@@ -21,8 +21,8 @@ const AllTagsTemplate = ({data, pageContext}) => {
   return (
     <div style={{fontFamily: 'avenir'}}>
      <Header />
-      <div>
-        <ul>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        
           {tags.map((tagName, index) => {
             return (
               <StyledTag key={index}>
@@ -32,7 +32,7 @@ const AllTagsTemplate = ({data, pageContext}) => {
               </StyledTag>
             )
           })}
-        </ul>
+        
       </div>
     </div>
   )
