@@ -23,6 +23,15 @@ const HeaderP = styled.p`
   opacity: 0.5
 `
 
+const HeaderTag = styled(Link)`
+  color: white;
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  font-size: 18px;
+`
+
 const TitleAndDescription = ({data}) => {
   const description = data.site.siteMetadata.description
 
@@ -34,6 +43,7 @@ const TitleAndDescription = ({data}) => {
       <HeaderP>
         {description}
       </HeaderP>
+      <HeaderTag to='/tags'>Browse by Tag</HeaderTag>
     </HeaderWrapper>
   )
 }
