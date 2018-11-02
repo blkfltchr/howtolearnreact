@@ -163,6 +163,4 @@ const App = () => (
 
 Build out a few pieces of composed components from scratch.
 
-This is a [React Cheat Sheet](https://devhints.io/react "by DEVHINTS.IO") and below is another
-
-![React Cheat Sheet](https://ibin.co/4BGcJlgplMcW.png "React Cheat Sheet")
+This is a [React Cheat Sheet](https://devhints.io/react "by DEVHINTS.IO") and [here](https://ibin.co/4BGcJlgplMcW.png) is another.

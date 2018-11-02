@@ -6,6 +6,22 @@ import styled from 'styled-components';
 const BlogPostWrapper = styled.div`
   width: 60vw;
   margin: 0 auto;
+  font-family: avenir;
+`
+
+const PrevNext = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const StyledTag = styled.span`
+  margin-right: 24px;
+  padding: 4px;
+  border: 1px solid rebeccapurple;
+
+  a {
+    color: rebeccapurple;
+  }
 `
 
 const Template = ({data, pageContext}) => {
@@ -13,32 +29,40 @@ const Template = ({data, pageContext}) => {
 
   const {markdownRemark} = data
   const title = markdownRemark.frontmatter.title
+  const tags = markdownRemark.frontmatter.tags
   const html = markdownRemark.html
   return (
     <div>
       <Header />
       <BlogPostWrapper>
-      <h1 style={{fontFamily: 'avenir'}}>{title}</h1>
+      <h1>{title}</h1>
+      {tags.map((tag, index) => {
+                return (
+                  <StyledTag key={index}>
+                    <Link to={`/tags/${tag}`}>{tag}</Link>
+                  </StyledTag>
+                  )
+                })
+              }
       <div
         dangerouslySetInnerHTML={{__html: html}}
-        style={{
-          fontFamily: 'avenir'
-        }}
       />
-      <div style={{marginBottom: '1rem', fontFamily: 'avenir'}}>
-        {prev &&
-          <Link to={prev.frontmatter.path}>
-            Prev: {`${prev.frontmatter.title}`}
-          </Link>
-        }
-      </div>
-      <div style={{fontFamily: 'avenir'}}>
-        {next &&
-          <Link to={next.frontmatter.path}>
-            Next: {`${next.frontmatter.title}`}
-          </Link>
-        }
-      </div>
+      <PrevNext>
+        <div>
+          {prev &&
+            <Link to={prev.frontmatter.path}>
+              Prev: {`${prev.frontmatter.title}`}
+            </Link>
+          }
+        </div>
+        <div>
+          {next &&
+            <Link to={next.frontmatter.path}>
+              Next: {`${next.frontmatter.title}`}
+            </Link>
+          }
+        </div>
+      </PrevNext>
       </BlogPostWrapper>
     </div>
   )
@@ -50,6 +74,7 @@ export const query = graphql`
       html
       frontmatter {
         title
+        tags
       }
     }
   }
