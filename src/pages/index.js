@@ -11,6 +11,11 @@ const IndexWrapper = styled.div`
   text-align: center;
 `
 
+const StyledExcerpt = styled(Link)`
+  text-decoration: none;
+  color: black;
+`
+
 const StyledLink = styled(Link)`
   display: inline-block;
   position: relative;
@@ -18,7 +23,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 2rem;
   font-weight: bold;
-  margin: 1rem;
+  margin: 0.5rem 0.5rem 0 0.5rem;
 
   ::after {
     content: '';
@@ -39,10 +44,13 @@ const StyledLink = styled(Link)`
 const StyledTag = styled.span`
   margin-right: 24px;
   padding: 4px;
-  border: 1px solid rebeccapurple;
+  background-color: #a700ff;
+  border-radius: 5px;
 
   a {
-    color: rebeccapurple;
+    color: white;
+    text-decoration: none;
+    margin: 0 3px;
   }
 `
 
@@ -55,19 +63,21 @@ const Layout = ({data}) => {
         {edges.map(edge => {
           const {frontmatter} = edge.node
           return (
-            <div>
+            <div style={{margin: '1rem'}}>
               <StyledLink to={frontmatter.path}>
                 {frontmatter.title}
               </StyledLink>
-              {frontmatter.tags.map((tag, index) => {
-                return (
-                  <StyledTag key={index}>
-                    <Link to={`/tags/${tag}`}>{tag}</Link>
-                  </StyledTag>
-                  )
-                })
-              }
-              <p>{frontmatter.excerpt}</p>
+              <StyledExcerpt to={frontmatter.path}><p>{frontmatter.excerpt}</p></StyledExcerpt>
+              <div>
+                {frontmatter.tags.map((tag, index) => {
+                  return (
+                    <StyledTag key={index}>
+                      <Link to={`/tags/${tag}`}>{tag}</Link>
+                    </StyledTag>
+                    )
+                  })
+                }
+              </div>
             </div>
           )
         })}

@@ -17,10 +17,13 @@ const PrevNext = styled.div`
 const StyledTag = styled.span`
   margin-right: 24px;
   padding: 4px;
-  border: 1px solid rebeccapurple;
+  background-color: #a700ff;
+  border-radius: 5px;
 
   a {
-    color: rebeccapurple;
+    color: white;
+    text-decoration: none;
+    margin: 0 3px;
   }
 `
 

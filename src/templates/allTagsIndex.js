@@ -1,10 +1,12 @@
-import React from "react"
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from 'gatsby';
+import Header from '../components/Header';
 
 const AllTagsTemplate = ({data, pageContext}) => {
   const { tags } = pageContext
   return (
     <div style={{fontFamily: 'avenir'}}>
+     <Header />
       <div>
         <ul>
           {tags.map((tagName, index) => {

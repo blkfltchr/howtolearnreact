@@ -1,10 +1,12 @@
-import React from "react"
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from 'gatsby';
+import Header from '../components/Header';
 
 const SingleTagTemplate = ({data, pageContext}) => {
   const { posts, tagName } = pageContext
   return (
     <div style={{fontFamily: 'avenir'}}>
+     <Header />
       <div>
         Posts about {`${tagName}`}
       </div>
