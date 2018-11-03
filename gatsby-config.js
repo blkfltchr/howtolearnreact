@@ -4,11 +4,18 @@ module.exports = {
       description: 'These tutorials will give you a deeper understanding of React.js. Learn with examples from the Javascript UI library, covering the basics and the advanced.'
     },
     plugins: [
-      `gatsby-transformer-remark`,
+      // `gatsby-transformer-remark`,
       `gatsby-plugin-react-helmet`,
       `gatsby-plugin-styled-components`,
       `gatsby-transformer-sharp`,
       `gatsby-plugin-sharp`,
+      {
+        resolve: `gatsby-source-contentful`,
+        options: {
+          spaceId: `xgoskzm5h9or`,
+          accessToken: `d1b2d3210de2d87785ced9abd7ce66a64a4339d3c28fcee533956c74bb46ab88`,
+        }
+      },
       {
         resolve: `gatsby-source-filesystem`,
         options: {

@@ -30,10 +30,10 @@ const StyledTag = styled.span`
 const Template = ({data, pageContext}) => {
   const {next, prev} = pageContext
 
-  const {markdownRemark} = data
-  const title = markdownRemark.frontmatter.title
-  const tags = markdownRemark.frontmatter.tags
-  const html = markdownRemark.html
+  const {allContentfulBlogPost} = data
+  const title = allContentfulBlogPost.title
+  const tags = allContentfulBlogPost.tags
+  const body = allContentfulBlogPost.body.body
   return (
     <div>
       <Header />
@@ -47,21 +47,19 @@ const Template = ({data, pageContext}) => {
                   )
                 })
               }
-      <div
-        dangerouslySetInnerHTML={{__html: html}}
-      />
+      <div>{body}</div>
       <PrevNext>
         <div>
           {prev &&
-            <Link to={prev.frontmatter.path}>
-              Prev: {`${prev.frontmatter.title}`}
+            <Link to={prev.path}>
+              Prev: {`${prev.title}`}
             </Link>
           }
         </div>
         <div>
           {next &&
-            <Link to={next.frontmatter.path}>
-              Next: {`${next.frontmatter.title}`}
+            <Link to={next.path}>
+              Next: {`${next.title}`}
             </Link>
           }
         </div>
@@ -73,14 +71,17 @@ const Template = ({data, pageContext}) => {
 
 export const query = graphql`
   query($pathSlug: String!) {
-    markdownRemark(frontmatter: { path: {eq: $pathSlug} }) {
-      html
-      frontmatter {
-        title
-        tags
+    contentfulBlogPost( slug: {eq: $pathSlug} ) {
+      title
+      slug
+      tags
+      body {
+        id
+        body
       }
     }
   }
 `
 
 export default Template
+

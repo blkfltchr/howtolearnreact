@@ -1,93 +1,141 @@
-const path = require('path')
+const path = require(`path`)
 
-const createTagPages = (createPage, posts) => {
-  const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
-  const singleTagIndexTemplate = path.resolve('src/templates/singleTagIndex.js')
-
-  const postsByTag = {}
-
-  posts.forEach(({node}) => {
-    if (node.frontmatter.tags) {
-      node.frontmatter.tags.forEach(tag => {
-        if (!postsByTag[tag]) {
-          postsByTag[tag] = []
-        }
-
-        postsByTag[tag].push(node)
-      })
-    }
-  })
-
-  const tags = Object.keys(postsByTag)
-
-  createPage({
-    path: '/tags',
-    component: allTagsIndexTemplate,
-    context: {
-      tags: tags.sort()
-    }
-  })
-
-  tags.forEach(tagName => {
-    const posts = postsByTag[tagName]
-    
-    createPage({
-      path: `/tags/${tagName}`,
-      component: singleTagIndexTemplate,
-      context: {
-        posts,
-        tagName
-      }
-    })
-  }) 
-
-}
-
-exports.createPages = (({graphql, actions}) => {
+exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve('src/templates/blogPost.js') 
-
-    resolve(
-      graphql(
-        `
-          query {
-            allMarkdownRemark (
-              sort: {order: ASC, fields: [frontmatter___date]}
-            ) {
-              edges {
-                node {
-                  frontmatter {
-                    path
-                    title
-                    tags
-                  }
-                }
-              }
+  const loadPosts = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allContentfulBlogPost(
+          sort: { fields: [date], order: ASC }
+          limit: 10000
+        ) {
+          edges {
+            node {
+              slug
+              date
             }
           }
-        `
-      ).then(result => {
-        const posts = result.data.allMarkdownRemark.edges
+        }
+      }
+    `).then(result => {
+      const posts = result.data.allContentfulBlogPost.edges
+      const postsPerFirstPage = 6
+      const postsPerPage = 6
+      const numPages = Math.ceil(
+        posts.slice(postsPerFirstPage).length / postsPerPage
+      )
 
-        createTagPages(createPage, posts)
+      // Create main home page
+      createPage({
+        path: `/`,
+        component: path.resolve(`./src/pages/index.js`),
+        context: {
+          limit: postsPerFirstPage,
+          skip: 0,
+          numPages: numPages + 1,
+          currentPage: 1,
+        },
+      })
 
-        posts.forEach(({node}, index) => {
-          const path = node.frontmatter.path
-          createPage({
-            path,
-            component: blogPostTemplate,
-            context: {
-              pathSlug: path,
-              prev: index === 0 ? null : posts[index - 1].node,
-              next: index === (posts.length - 1) ? null : posts[index + 1].node
-            }
-          })
-
-          resolve()
+      // Create additional pagination on home page if needed
+      Array.from({ length: numPages }).forEach((_, i) => {
+        createPage({
+          path: `/${i + 2}/`,
+          component: path.resolve(`./src/pages/index.js`),
+          context: {
+            limit: postsPerPage,
+            skip: i * postsPerPage + postsPerFirstPage,
+            numPages: numPages + 1,
+            currentPage: i + 2,
+          },
         })
       })
-    )
+
+      // Create each individual post
+      posts.forEach((edge, i) => {
+        const prev = i === 0 ? null : posts[i - 1].node
+        const next = i === posts.length - 1 ? null : posts[i + 1].node
+        createPage({
+          path: `/${edge.node.slug}/`,
+          component: path.resolve(`./src/templates/blogPost.js`),
+          context: {
+            pathSlug: edge.node.slug,
+            prev,
+            next,
+          },
+        })
+      })
+      resolve()
+    })
   })
-})
+
+  // const loadTags = new Promise((resolve, reject) => {
+  //   graphql(`
+  //     {
+  //       allContentfulTag {
+  //         edges {
+  //           node {
+  //             slug
+  //             post {
+  //               id
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   `).then(result => {
+  //     const tags = result.data.allContentfulTag.edges
+  //     const postsPerPage = config.postsPerPage
+
+  //     // Create tag pages with pagination if needed
+  //     tags.map(({ node }) => {
+  //       const totalPosts = node.post !== null ? node.post.length : 0
+  //       const numPages = Math.ceil(totalPosts / postsPerPage)
+  //       Array.from({ length: numPages }).forEach((_, i) => {
+  //         createPage({
+  //           path:
+  //             i === 0 ? `/tag/${node.slug}/` : `/tag/${node.slug}/${i + 1}/`,
+  //           component: path.resolve(`./src/templates/tag.js`),
+  //           context: {
+  //             slug: node.slug,
+  //             limit: postsPerPage,
+  //             skip: i * postsPerPage,
+  //             numPages: numPages,
+  //             currentPage: i + 1,
+  //           },
+  //         })
+  //       })
+  //     })
+  //     resolve()
+  //   })
+  // })
+
+  const loadPages = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allContentfulBlogPost {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
+      }
+    `).then(result => {
+      const pages = result.data.allContentfulBlogPost.edges
+      pages.map(({ node }) => {
+        createPage({
+          path: `${node.slug}/`,
+          component: path.resolve(`./src/templates/blogPost.js`),
+          context: {
+            slug: node.slug,
+          },
+        })
+      })
+      resolve()
+    })
+  })
+
+  return Promise.all([loadPosts, loadTags, loadPages])
+}

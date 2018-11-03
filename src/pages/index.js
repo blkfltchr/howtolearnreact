@@ -55,21 +55,20 @@ const StyledTag = styled.span`
 `
 
 const Layout = ({data}) => {
-  const { edges } = data.allMarkdownRemark
+  const { edges } = data.allContentfulBlogPost
   return (
     <div>
       <Header />
       <IndexWrapper>
         {edges.map(edge => {
-          const {frontmatter} = edge.node
           return (
             <div style={{margin: '1rem'}}>
-              <StyledLink to={frontmatter.path}>
-                {frontmatter.title}
+              <StyledLink to={edge.node.slug}>
+                {edge.node.title}
               </StyledLink>
-              <StyledExcerpt to={frontmatter.path}><p>{frontmatter.excerpt}</p></StyledExcerpt>
+              <StyledExcerpt to={edge.node.slug}><p>{edge.node.excerpt}</p></StyledExcerpt>
               <div>
-                {frontmatter.tags.map((tag, index) => {
+                {edge.node.tags.map((tag, index) => {
                   return (
                     <StyledTag key={index}>
                       <Link to={`/tags/${tag}`}>{tag}</Link>
@@ -88,21 +87,24 @@ const Layout = ({data}) => {
 
 export const query = graphql`
   query HomepageQuery {
-    allMarkdownRemark(
-      sort: {order: ASC, fields: [frontmatter___date]}
+    allContentfulBlogPost(
+      sort: {fields: [date], order: ASC}
+      limit: 6 
     ) {
       edges {
         node {
-          frontmatter {
-            title
-            path
-            date
-            excerpt
-            tags
+          title
+          slug
+          body {
+            id
+            body
           }
+          date
+          tags
+          excerpt
         }
       }
-    } 
+    }
   }
 `
 
