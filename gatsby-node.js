@@ -57,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
         const prev = i === 0 ? null : posts[i - 1].node
         const next = i === posts.length - 1 ? null : posts[i + 1].node
         createPage({
-          path: `/${edge.node.slug}/`,
+          path: `${edge.node.slug}/`,
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
             pathSlug: edge.node.slug,
@@ -69,47 +69,6 @@ exports.createPages = ({ graphql, actions }) => {
       resolve()
     })
   })
-
-  // const loadTags = new Promise((resolve, reject) => {
-  //   graphql(`
-  //     {
-  //       allContentfulTag {
-  //         edges {
-  //           node {
-  //             slug
-  //             post {
-  //               id
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `).then(result => {
-  //     const tags = result.data.allContentfulTag.edges
-  //     const postsPerPage = config.postsPerPage
-
-  //     // Create tag pages with pagination if needed
-  //     tags.map(({ node }) => {
-  //       const totalPosts = node.post !== null ? node.post.length : 0
-  //       const numPages = Math.ceil(totalPosts / postsPerPage)
-  //       Array.from({ length: numPages }).forEach((_, i) => {
-  //         createPage({
-  //           path:
-  //             i === 0 ? `/tag/${node.slug}/` : `/tag/${node.slug}/${i + 1}/`,
-  //           component: path.resolve(`./src/templates/tag.js`),
-  //           context: {
-  //             slug: node.slug,
-  //             limit: postsPerPage,
-  //             skip: i * postsPerPage,
-  //             numPages: numPages,
-  //             currentPage: i + 1,
-  //           },
-  //         })
-  //       })
-  //     })
-  //     resolve()
-  //   })
-  // })
 
   const loadPages = new Promise((resolve, reject) => {
     graphql(`
@@ -126,7 +85,7 @@ exports.createPages = ({ graphql, actions }) => {
       const pages = result.data.allContentfulBlogPost.edges
       pages.map(({ node }) => {
         createPage({
-          path: `${node.slug}/`,
+          path: `${node.slug}`,
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
             slug: node.slug,
@@ -137,5 +96,5 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  return Promise.all([loadPosts, loadTags, loadPages])
+  return Promise.all([loadPosts, loadPages])
 }

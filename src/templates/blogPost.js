@@ -30,10 +30,8 @@ const StyledTag = styled.span`
 const Template = ({data, pageContext}) => {
   const {next, prev} = pageContext
 
-  const {allContentfulBlogPost} = data
-  const title = allContentfulBlogPost.title
-  const tags = allContentfulBlogPost.tags
-  const body = allContentfulBlogPost.body.body
+  const {title, tags} = data.contentfulBlogPost
+
   return (
     <div>
       <Header />
@@ -47,18 +45,22 @@ const Template = ({data, pageContext}) => {
                   )
                 })
               }
-      <div>{body}</div>
+      <div 
+        dangerouslySetInnerHTML={{
+          __html: data.contentfulBlogPost.body.childMarkdownRemark.html
+        }}    
+      />
       <PrevNext>
         <div>
           {prev &&
-            <Link to={prev.path}>
+            <Link to={prev.slug}>
               Prev: {`${prev.title}`}
             </Link>
           }
         </div>
         <div>
           {next &&
-            <Link to={next.path}>
+            <Link to={next.slug}>
               Next: {`${next.title}`}
             </Link>
           }
@@ -68,18 +70,19 @@ const Template = ({data, pageContext}) => {
     </div>
   )
 }
-
+//($pathSlug: String!) {eq: $pathSlug}
 export const query = graphql`
-  query($pathSlug: String!) {
-    contentfulBlogPost( slug: {eq: $pathSlug} ) {
+  query{
+    contentfulBlogPost(slug: {eq: "setting-up-a-react-environment-using-a-single-html-file"}) {
       title
       slug
       tags
       body {
-        id
-        body
+        childMarkdownRemark {
+          html
+        }
+        }
       }
-    }
   }
 `
 

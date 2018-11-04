@@ -63,10 +63,10 @@ const Layout = ({data}) => {
         {edges.map(edge => {
           return (
             <div style={{margin: '1rem'}}>
-              <StyledLink to={edge.node.slug}>
+              <StyledLink to={edge.node.path}>
                 {edge.node.title}
               </StyledLink>
-              <StyledExcerpt to={edge.node.slug}><p>{edge.node.excerpt}</p></StyledExcerpt>
+              <StyledExcerpt to={edge.node.path}><p>{edge.node.excerpt}</p></StyledExcerpt>
               <div>
                 {edge.node.tags.map((tag, index) => {
                   return (
