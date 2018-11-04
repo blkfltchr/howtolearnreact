@@ -57,10 +57,10 @@ exports.createPages = ({ graphql, actions }) => {
         const prev = i === 0 ? null : posts[i - 1].node
         const next = i === posts.length - 1 ? null : posts[i + 1].node
         createPage({
-          path: `${edge.node.slug}/`,
+          path: edge.node.slug, 
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
-            pathSlug: edge.node.slug,
+            pathSlug: edge.node.slug, // checked, correct
             prev,
             next,
           },
@@ -83,6 +83,9 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const pages = result.data.allContentfulBlogPost.edges
+
+      createTagPages(createPage, pages)
+
       pages.map(({ node }) => {
         createPage({
           path: `${node.slug}`,
@@ -97,4 +100,47 @@ exports.createPages = ({ graphql, actions }) => {
   })
 
   return Promise.all([loadPosts, loadPages])
+}
+
+const createTagPages = (createPage, posts) => {
+  const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
+  const singleTagIndexTemplate = path.resolve('src/templates/singleTagIndex.js')
+
+  const postsByTag = {}
+
+  posts.forEach(({node}) => {
+    if (node.tags) {
+      node.tags.forEach(tag => {
+        if (!postsByTag[tag]) {
+          postsByTag[tag] = []
+        }
+
+        postsByTag[tag].push(node)
+      })
+    }
+  })
+
+  const tags = Object.keys(postsByTag)
+
+  createPage({
+    path: '/tags',
+    component: allTagsIndexTemplate,
+    context: {
+      tags: tags.sort()
+    }
+  })
+
+  tags.forEach(tagName => {
+    const posts = postsByTag[tagName]
+    
+    createPage({
+      path: `/tags/${tagName}`,
+      component: singleTagIndexTemplate,
+      context: {
+        posts,
+        tagName
+      }
+    })
+  }) 
+
 }

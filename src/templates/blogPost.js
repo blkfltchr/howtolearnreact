@@ -12,7 +12,19 @@ const BlogPostWrapper = styled.div`
 const PrevNext = styled.div`
   display: flex;
   justify-content: space-between;
+  background-color: #a700ff;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+
+  :hover {
+    background-color: #ffffff;
+    border: solid 2px #a700ff;
+    color: #a700ff;
+    }
 `
+
+
 
 const StyledTag = styled.span`
   margin-right: 24px;
@@ -25,6 +37,16 @@ const StyledTag = styled.span`
     text-decoration: none;
     margin: 0 3px;
   }
+
+  :hover {
+    
+    background-color: #ffffff;
+    border: solid 2px #a700ff;
+
+    a {
+      color: #a700ff;
+    }
+    }
 `
 
 const Template = ({data, pageContext}) => {
@@ -70,10 +92,10 @@ const Template = ({data, pageContext}) => {
     </div>
   )
 }
-//($pathSlug: String!) {eq: $pathSlug}
+//($pathSlug: String!) {eq: $pathSlug} {eq: "setting-up-a-react-environment-using-a-single-html-file"}
 export const query = graphql`
-  query{
-    contentfulBlogPost(slug: {eq: "setting-up-a-react-environment-using-a-single-html-file"}) {
+  query blogPostQuery($pathSlug: String){
+    contentfulBlogPost(slug: {eq: $pathSlug}) {
       title
       slug
       tags

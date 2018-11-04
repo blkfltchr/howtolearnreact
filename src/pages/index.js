@@ -52,6 +52,16 @@ const StyledTag = styled.span`
     text-decoration: none;
     margin: 0 3px;
   }
+
+  :hover {
+    
+    background-color: #ffffff;
+    border: solid 2px #a700ff;
+
+    a {
+      color: #a700ff;
+    }
+    }
 `
 
 const Layout = ({data}) => {
@@ -63,10 +73,10 @@ const Layout = ({data}) => {
         {edges.map(edge => {
           return (
             <div style={{margin: '1rem'}}>
-              <StyledLink to={edge.node.path}>
+              <StyledLink to={edge.node.slug}>
                 {edge.node.title}
               </StyledLink>
-              <StyledExcerpt to={edge.node.path}><p>{edge.node.excerpt}</p></StyledExcerpt>
+              <StyledExcerpt to={edge.node.slug}><p>{edge.node.excerpt}</p></StyledExcerpt>
               <div>
                 {edge.node.tags.map((tag, index) => {
                   return (

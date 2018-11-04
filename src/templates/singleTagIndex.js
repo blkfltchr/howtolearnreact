@@ -66,12 +66,12 @@ const SingleTagTemplate = ({data, pageContext}) => {
             return (
              <div style={{margin: '0 0 1.45rem 0'}}>
               <div key={index}>
-                <StyledLink to={post.frontmatter.path}>
-                  {post.frontmatter.title}
+                <StyledLink to={post.path}>
+                  {post.title}
                 </StyledLink>
-                <StyledExcerpt to={post.frontmatter.path}><p>{post.frontmatter.excerpt}</p></StyledExcerpt>
+                <StyledExcerpt to={post.path}><p>{post.excerpt}</p></StyledExcerpt>
                 <div>
-                {post.frontmatter.tags.map((tag, index) => {
+                {post.tags.map((tag, index) => {
                   return (
                     <StyledTag key={index}>
                       <Link to={`/tags/${tag}`}>{tag}</Link>
