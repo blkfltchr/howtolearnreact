@@ -1,5 +1,48 @@
 const path = require(`path`)
 
+const createTagPages = (createPage, posts) => {
+  const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
+  const singleTagIndexTemplate = path.resolve('src/templates/singleTagIndex.js')
+
+  const postsByTag = {}
+
+  posts.forEach(({node}) => {
+    if (node.tags) {
+      node.tags.forEach(tag => {
+        if (!postsByTag[tag]) {
+          postsByTag[tag] = []
+        }
+
+        postsByTag[tag].push(node)
+      })
+    }
+  })
+
+  const tags = Object.keys(postsByTag)
+
+  createPage({
+    path: '/tags',
+    component: allTagsIndexTemplate,
+    context: {
+      tags: tags.sort()
+    }
+  })
+
+  tags.forEach(tagName => {
+    const posts = postsByTag[tagName]
+    
+    createPage({
+      path: `/tags/${tagName}`,
+      component: singleTagIndexTemplate,
+      context: {
+        posts,
+        tagName
+      }
+    })
+  }) 
+
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -53,16 +96,14 @@ exports.createPages = ({ graphql, actions }) => {
       })
 
       // Create each individual post
-      posts.forEach((edge, i) => {
-        const prev = i === 0 ? null : posts[i - 1].node
-        const next = i === posts.length - 1 ? null : posts[i + 1].node
+      posts.forEach(({node}, index) => {
         createPage({
-          path: edge.node.slug, 
+          path: node.slug, 
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
-            pathSlug: edge.node.slug, // checked, correct
-            prev,
-            next,
+            pathSlug: node.slug,
+            prev: index === 0 ? null : posts[index - 1].node,
+            next: index === (posts.length - 1) ? null : posts[index + 1].node,
           },
         })
       })
@@ -91,7 +132,7 @@ exports.createPages = ({ graphql, actions }) => {
           path: `${node.slug}`,
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
-            slug: node.slug,
+            pathSlug: node.slug,
           },
         })
       })
@@ -100,47 +141,4 @@ exports.createPages = ({ graphql, actions }) => {
   })
 
   return Promise.all([loadPosts, loadPages])
-}
-
-const createTagPages = (createPage, posts) => {
-  const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
-  const singleTagIndexTemplate = path.resolve('src/templates/singleTagIndex.js')
-
-  const postsByTag = {}
-
-  posts.forEach(({node}) => {
-    if (node.tags) {
-      node.tags.forEach(tag => {
-        if (!postsByTag[tag]) {
-          postsByTag[tag] = []
-        }
-
-        postsByTag[tag].push(node)
-      })
-    }
-  })
-
-  const tags = Object.keys(postsByTag)
-
-  createPage({
-    path: '/tags',
-    component: allTagsIndexTemplate,
-    context: {
-      tags: tags.sort()
-    }
-  })
-
-  tags.forEach(tagName => {
-    const posts = postsByTag[tagName]
-    
-    createPage({
-      path: `/tags/${tagName}`,
-      component: singleTagIndexTemplate,
-      context: {
-        posts,
-        tagName
-      }
-    })
-  }) 
-
 }
