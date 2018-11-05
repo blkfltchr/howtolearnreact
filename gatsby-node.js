@@ -1,12 +1,12 @@
 const path = require(`path`)
 
-const createTagPages = (createPage, posts) => {
+const createTagPages = (createPage, pages) => {
   const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
   const singleTagIndexTemplate = path.resolve('src/templates/singleTagIndex.js')
 
   const postsByTag = {}
 
-  posts.forEach(({node}) => {
+  pages.forEach(({node}) => {
     if (node.tags) {
       node.tags.forEach(tag => {
         if (!postsByTag[tag]) {
@@ -132,7 +132,6 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
             pathSlug: node.slug,
-            title
             prev: index === 0 ? null : pages[index - 1].node,
             next: index === (pages.length - 1) ? null : pages[index + 1].node,
           },

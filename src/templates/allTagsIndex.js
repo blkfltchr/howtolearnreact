@@ -1,23 +1,12 @@
 import React from "react";
 import { Link } from 'gatsby';
 import Header from '../components/Header';
-import styled from 'styled-components'
-
-const StyledTag = styled.span`
-  margin-right: 24px;
-  padding: 4px;
-  background-color: #a700ff;
-  border-radius: 5px;
-
-  a {
-    color: white;
-    text-decoration: none;
-    margin: 0 3px;
-  }
-`
+import {TagsStyledTag} from './styled'
 
 const AllTagsTemplate = ({data, pageContext}) => {
+  console.log(data)
   const { tags } = pageContext
+  console.log(pageContext)
   return (
     <div style={{fontFamily: 'avenir'}}>
      <Header />
@@ -25,11 +14,11 @@ const AllTagsTemplate = ({data, pageContext}) => {
         
           {tags.map((tagName, index) => {
             return (
-              <StyledTag key={index}>
+              <TagsStyledTag key={index}>
                 <Link to={`/tags/${tagName}`}>
                   {tagName}
                 </Link>
-              </StyledTag>
+              </TagsStyledTag>
             )
           })}
         

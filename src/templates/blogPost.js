@@ -1,55 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import styled from 'styled-components';
-
-const BlogPostWrapper = styled.div`
-  width: 60vw;
-  margin: 0 auto;
-  font-family: avenir;
-`
-
-const PrevNext = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-const PrevNextButton = styled(Link)`
-  background-color: #a700ff;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  padding: 5px;
-
-  :hover {
-    background-color: #ffffff;
-    border: solid 2px #a700ff;
-    color: #a700ff;
-    }
-`
-
-const StyledTag = styled.span`
-  margin-right: 24px;
-  padding: 4px;
-  background-color: #a700ff;
-  border-radius: 5px;
-
-  a {
-    color: white;
-    text-decoration: none;
-    margin: 0 3px;
-  }
-
-  :hover {
-    
-    background-color: #ffffff;
-    border: solid 2px #a700ff;
-
-    a {
-      color: #a700ff;
-    }
-    }
-`
+import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag} from './styled';
 
 const Template = ({data, pageContext}) => {
   console.log(pageContext)
