@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from 'gatsby';
+
+import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const IndexWrapper = styled.div`
   display: flex;
@@ -90,3 +91,20 @@ const SingleTagTemplate = ({data, pageContext}) => {
 }
 
 export default SingleTagTemplate
+
+// export const pageQuery = graphql`
+//   query($tag: String) {
+//     allContentfulBlogPost(
+//       limit: 2000
+//       sort:{fields: date, order: ASC}
+//       filter:{ tags: {in: [$tag]} }
+//     ) {
+//       edges {
+//         node {
+//           title
+//           slug
+//         }
+//       }
+//     }
+//   }
+// `

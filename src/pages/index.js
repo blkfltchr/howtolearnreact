@@ -70,7 +70,7 @@ const Layout = ({data}) => {
     <div>
       <Header />
       <IndexWrapper>
-        {edges.map(edge => {
+        {edges.map((edge) => {
           return (
             <div style={{margin: '1rem'}}>
               <StyledLink to={edge.node.slug}>

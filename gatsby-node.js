@@ -97,13 +97,12 @@ exports.createPages = ({ graphql, actions }) => {
 
       // Create each individual post
       posts.forEach(({node}, index) => {
+        // const slug = node.slug
         createPage({
           path: node.slug, 
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
             pathSlug: node.slug,
-            prev: index === 0 ? null : posts[index - 1].node,
-            next: index === (posts.length - 1) ? null : posts[index + 1].node,
           },
         })
       })
@@ -127,12 +126,15 @@ exports.createPages = ({ graphql, actions }) => {
 
       createTagPages(createPage, pages)
 
-      pages.map(({ node }) => {
+      pages.map(({ node }, index) => {
         createPage({
           path: `${node.slug}`,
           component: path.resolve(`./src/templates/blogPost.js`),
           context: {
             pathSlug: node.slug,
+            title
+            prev: index === 0 ? null : pages[index - 1].node,
+            next: index === (pages.length - 1) ? null : pages[index + 1].node,
           },
         })
       })

@@ -12,10 +12,14 @@ const BlogPostWrapper = styled.div`
 const PrevNext = styled.div`
   display: flex;
   justify-content: space-between;
+`
+
+const PrevNextButton = styled(Link)`
   background-color: #a700ff;
   border-radius: 5px;
   color: white;
   text-decoration: none;
+  padding: 5px;
 
   :hover {
     background-color: #ffffff;
@@ -23,8 +27,6 @@ const PrevNext = styled.div`
     color: #a700ff;
     }
 `
-
-
 
 const StyledTag = styled.span`
   margin-right: 24px;
@@ -50,8 +52,9 @@ const StyledTag = styled.span`
 `
 
 const Template = ({data, pageContext}) => {
-  const {next, prev} = pageContext
-
+  console.log(pageContext)
+  const prev = pageContext.prev
+  const next = pageContext.next
   const {title, tags} = data.contentfulBlogPost
 
   return (
@@ -75,16 +78,16 @@ const Template = ({data, pageContext}) => {
       <PrevNext>
         <div>
           {prev &&
-            <Link to={prev.slug}>
-              Prev: {`${prev.title}`}
-            </Link>
+            (<PrevNextButton to={prev.slug}>
+              Previous post
+            </PrevNextButton>)
           }
         </div>
         <div>
           {next &&
-            <Link to={next.slug}>
-              Next: {`${next.title}`}
-            </Link>
+            (<PrevNextButton to={next.slug}>
+              Next post
+            </PrevNextButton>)
           }
         </div>
       </PrevNext>
