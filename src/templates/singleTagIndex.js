@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink} from './styled'
+import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink} from '../styled/templatesStyled'
 
 const SingleTagTemplate = ({data, pageContext}) => {
   const { posts, tagName } = pageContext

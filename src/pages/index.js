@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag} from './styled';
+import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag} from '../styled/pagesStyled';
 
 const Layout = ({data}) => {
   const { edges } = data.allContentfulBlogPost

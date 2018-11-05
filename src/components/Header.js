@@ -1,6 +1,6 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from 'gatsby'
-import {HeaderWrapper, HeaderP, HeaderTag} from './styled';
+import {HeaderWrapper, HeaderP, HeaderTag} from '../styled/componentsStyled';
 
 import logo from '../images/logo.png'
 
