@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag} from './styled';
+import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag} from '../styled/templatesStyled';
 
 const Template = ({data, pageContext}) => {
   console.log(pageContext)
