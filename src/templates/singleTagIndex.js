@@ -1,11 +1,16 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink} from '../styled/templatesStyled'
+import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag} from '../styled/templatesStyled'
 
-const SingleTagTemplate = ({data, pageContext}) => {
-  const { posts, tagName } = pageContext
-  const TAGNAMEUC = tagName.toUpperCase();
+const SingleTagTemplate = ({data}) => {
+
+  console.log(data.contentfulTag)
+  const { slug, posts } = data.contentfulTag
+
+  console.log(slug)
+
+  const TAGNAMEUC = slug.toUpperCase();
   return (
     <div style={{fontFamily: 'avenir'}}>
      <Header />
@@ -15,10 +20,10 @@ const SingleTagTemplate = ({data, pageContext}) => {
             return (
              <div style={{margin: '0 0 1.45rem 0'}}>
               <div key={index}>
-                <TagNameStyledLink to={post.path}>
+                <TagNameStyledLink to={post.slug}>
                   {post.title}
                 </TagNameStyledLink>
-                <TagNameStyledExcerpt to={post.path}><p>{post.excerpt}</p></TagNameStyledExcerpt>
+                <TagNameStyledExcerpt to={post.slug}><p>{post.excerpt}</p></TagNameStyledExcerpt>
                 <div>
                 {post.tags.map((tag, index) => {
                   return (
@@ -40,19 +45,17 @@ const SingleTagTemplate = ({data, pageContext}) => {
 
 export default SingleTagTemplate
 
-// export const pageQuery = graphql`
-//   query($tag: String) {
-//     allContentfulBlogPost(
-//       limit: 2000
-//       sort:{fields: date, order: ASC}
-//       filter:{ tags: {in: [$tag]} }
-//     ) {
-//       edges {
-//         node {
-//           title
-//           slug
-//         }
-//       }
-//     }
-//   }
-// `
+export const pageQuery = graphql`
+  query($pathSlug: String!) {
+    contentfulTag(slug: { eq: $pathSlug }) {
+          slug
+          posts {
+            id
+            title
+            slug
+            tags
+            excerpt
+      }
+    }
+  }
+`

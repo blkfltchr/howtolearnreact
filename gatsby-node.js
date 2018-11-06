@@ -2,7 +2,6 @@ const path = require(`path`)
 
 const createTagPages = (createPage, pages) => {
   const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
-  const singleTagIndexTemplate = path.resolve('src/templates/singleTagIndex.js')
 
   const postsByTag = {}
 
@@ -27,19 +26,6 @@ const createTagPages = (createPage, pages) => {
       tags: tags.sort()
     }
   })
-
-  tags.forEach(tagName => {
-    const posts = postsByTag[tagName]
-    
-    createPage({
-      path: `/tags/${tagName}`,
-      component: singleTagIndexTemplate,
-      context: {
-        posts,
-        tagName
-      }
-    })
-  }) 
 
 }
 
@@ -110,6 +96,49 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
+  const loadTags = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allContentfulTag {
+          edges {
+            node {
+              slug
+              posts {
+                id
+                slug
+                title
+              }
+            }
+          }
+        }
+      }
+    `).then(result => {
+      const tags = result.data.allContentfulTag.edges
+      const postsPerPage = 6
+  
+      // Create tag pages with pagination if needed
+      tags.map(({ node }) => {
+        const totalPosts = node.posts !== null ? node.posts.length : 0
+        const numPages = Math.ceil(totalPosts / postsPerPage)
+        Array.from({ length: numPages }).forEach((_, i) => {
+          createPage({
+            path:
+              i === 0 ? `/tags/${node.slug}/` : `/tags/${node.slug}/${i + 1}/`,
+            component: path.resolve(`./src/templates/singleTagIndex.js`),
+            context: {
+              pathSlug: node.slug,
+              limit: postsPerPage,
+              skip: i * postsPerPage,
+              numPages: numPages,
+              currentPage: i + 1,
+            },
+          })
+        })
+      })
+      resolve()
+    })
+  })
+
   const loadPages = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -141,5 +170,5 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  return Promise.all([loadPosts, loadPages])
+  return Promise.all([loadPosts, loadPages, loadTags])
 }
