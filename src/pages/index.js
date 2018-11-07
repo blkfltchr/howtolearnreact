@@ -26,6 +26,7 @@ const Layout = ({data}) => {
                   })
                 }
               </div>
+              
             </div>
           )
         })}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from 'gatsby';
+// import {Link} from 'gatsby';
 
 /* Header styles */
 
@@ -22,11 +22,11 @@ export const HeaderP = styled.p`
   opacity: 0.5
 `
 
-export const HeaderTag = styled(Link)`
-  color: white;
-  margin-bottom: 1rem;
-  position: absolute;
-  top: 10px;
-  left: 16px;
-  font-size: 18px;
-`
+// export const HeaderTag = styled(Link)`
+//   color: white;
+//   margin-bottom: 1rem;
+//   position: absolute;
+//   top: 10px;
+//   left: 16px;
+//   font-size: 18px;
+// `

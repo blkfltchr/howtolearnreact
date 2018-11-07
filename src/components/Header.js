@@ -1,6 +1,6 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from 'gatsby'
-import {HeaderWrapper, HeaderP, HeaderTag} from '../styled/componentsStyled';
+import {HeaderWrapper, HeaderP} from '../styled/componentsStyled'; // HeaderTag
 
 import logo from '../images/logo.png'
 
@@ -15,7 +15,7 @@ const TitleAndDescription = ({data}) => {
       <HeaderP>
         {description}
       </HeaderP>
-      <HeaderTag to='/tags'>Browse by Tag</HeaderTag>
+      {/* <HeaderTag to='/tags'>Browse by Tag</HeaderTag> */}
     </HeaderWrapper>
   )
 }

@@ -1,34 +1,5 @@
 const path = require(`path`)
 
-const createTagPages = (createPage, pages) => {
-  const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js')
-
-  const postsByTag = {}
-
-  pages.forEach(({node}) => {
-    if (node.tags) {
-      node.tags.forEach(tag => {
-        if (!postsByTag[tag]) {
-          postsByTag[tag] = []
-        }
-
-        postsByTag[tag].push(node)
-      })
-    }
-  })
-
-  const tags = Object.keys(postsByTag)
-
-  createPage({
-    path: '/tags',
-    component: allTagsIndexTemplate,
-    context: {
-      tags: tags.sort()
-    }
-  })
-
-}
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -96,6 +67,33 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
+  // const loadAllTags = new Promise((resolve, reject) => {
+  //   graphql(`
+  //     {
+  //       allContentfulTag {
+  //         edges {
+  //           node {
+  //             slug
+  //             }
+  //           }
+  //         }
+  //       }    
+  //   `).then(result => {
+  //     const allTags = result.data.allContentfulTag.edges
+
+  //     allTags.map(({ node }, index) => {
+  //       createPage({
+  //         path: '/tags',
+  //         component: path.resolve('src/templates/allTagsIndex.js'),
+  //         context: {
+  //           pathSlug: node.slug
+  //         }
+  //       })
+  //     })
+  //   })  
+  // })
+
+  
   const loadTags = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -153,8 +151,6 @@ exports.createPages = ({ graphql, actions }) => {
     `).then(result => {
       const pages = result.data.allContentfulBlogPost.edges
 
-      createTagPages(createPage, pages)
-
       pages.map(({ node }, index) => {
         createPage({
           path: `${node.slug}`,
@@ -170,5 +166,5 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  return Promise.all([loadPosts, loadPages, loadTags])
+  return Promise.all([loadPosts, loadPages, loadTags ]) // loadAllTags
 }
