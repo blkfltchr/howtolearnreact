@@ -3,11 +3,13 @@ import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
 import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag} from '../styled/pagesStyled';
 
-const Layout = ({data}) => {
+const Layout = ({data, pageContext}) => {
   const { edges } = data.allContentfulBlogPost
   return (
+    
     <div>
       <Header />
+      
       <IndexWrapper>
         {edges.map((edge) => {
           return (
@@ -19,6 +21,7 @@ const Layout = ({data}) => {
               <div>
                 {edge.node.tags.map((tag, index) => {
                   return (
+                    
                     <StyledTag key={index}>
                       <Link to={`/tags/${tag}`}>{tag}</Link>
                     </StyledTag>
@@ -39,7 +42,7 @@ export const query = graphql`
   query HomepageQuery {
     allContentfulBlogPost(
       sort: {fields: [date], order: ASC}
-      limit: 6 
+      limit: 6
     ) {
       edges {
         node {
