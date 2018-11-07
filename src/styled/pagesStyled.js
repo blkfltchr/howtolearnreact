@@ -63,3 +63,21 @@ export const StyledTag = styled.span`
     }
     }
 `
+
+/* Pagination styles */
+
+export const PaginationWrapper = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-cntent: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem
+`
+
+export const IndexPrevNext = styled(Link)`
+  color: #0076ca; 
+  text-decoration: none; 
+  font-weight: bold}}
+`
