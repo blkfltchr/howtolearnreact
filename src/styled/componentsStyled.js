@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import {Link} from 'gatsby';
 
 /* Header styles */
 
@@ -22,11 +21,17 @@ export const HeaderP = styled.p`
   opacity: 0.5
 `
 
-// export const HeaderTag = styled(Link)`
-//   color: white;
-//   margin-bottom: 1rem;
-//   position: absolute;
-//   top: 10px;
-//   left: 16px;
-//   font-size: 18px;
-// `
+/* Browse by tags styling */
+
+export const BrowseWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  font-family: avenir;
+`
+
+export const BrowseTags = styled.div`
+  font-size: 18px; 
+  margin-top: 3px; 
+  font-weight: bold; 
+  margin-right: 13px
+`

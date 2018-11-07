@@ -63,7 +63,7 @@ export const StyledTag = styled.span`
     a {
       color: #a700ff;
     }
-    }
+  }
 `
 
 /* /tags/[tagName] styles */
@@ -116,5 +116,15 @@ export const TagNameStyledTag = styled.span`
     color: white;
     text-decoration: none;
     margin: 0 3px;
+  }
+
+  :hover {
+    
+    background-color: #ffffff;
+    border: solid 2px #a700ff;
+
+    a {
+      color: #a700ff;
+    }
   }
 `
