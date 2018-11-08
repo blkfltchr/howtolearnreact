@@ -35,3 +35,26 @@ export const BrowseTags = styled.div`
   font-weight: bold; 
   margin-right: 13px
 `
+
+export const StyledBrowseTag = styled.span`
+  margin-right: 24px;
+  padding: 4px;
+  background-color: #62DAFC;
+  border-radius: 5px;
+
+  a {
+    color: white;
+    text-decoration: none;
+    margin: 0 3px;
+  }
+
+  :hover {
+    
+    background-color: #ffffff;
+    border: solid 2px #62DAFC;
+
+    a {
+      color: #62DAFC;
+    }
+  }
+`

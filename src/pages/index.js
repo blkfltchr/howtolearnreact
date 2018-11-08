@@ -67,11 +67,14 @@ const Layout = ({data, pageContext}) => {
   )
 }
 
+// 
+
+
 export const query = graphql`
-  query HomepageQuery($skip: Int!, $limit: Int!) {
+  query HomepageQuery($skip: Int!, $limit: Int!){
     allContentfulBlogPost(
-      sort: {fields: [date], order: ASC}
-      limit: $limit
+      sort: {fields: [date], order: ASC},
+      limit: $limit,
       skip: $skip
     ) {
       edges {

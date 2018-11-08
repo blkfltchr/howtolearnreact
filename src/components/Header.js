@@ -1,7 +1,6 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from 'gatsby'
-import {HeaderWrapper, HeaderP, BrowseWrapper, BrowseTags} from '../styled/componentsStyled';
-import {StyledTag} from '../styled/templatesStyled'
+import {HeaderWrapper, HeaderP, BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 import logo from '../images/logo.png'
 
 const TitleAndDescription = ({data}) => {
@@ -21,9 +20,9 @@ const TitleAndDescription = ({data}) => {
       <BrowseTags>Browse by tag:</BrowseTags>
       {data.allContentfulTag.edges.map((tag) => {
         return (
-          <StyledTag>
+          <StyledBrowseTag>
             <Link to={`/tags/${tag.node.slug}`}>{tag.node.slug}</Link>
-          </StyledTag>
+          </StyledBrowseTag>
         )
       })}
       </BrowseWrapper>
