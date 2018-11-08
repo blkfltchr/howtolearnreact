@@ -7,6 +7,8 @@ const Layout = ({data, pageContext}) => {
   const { edges } = data.allContentfulBlogPost
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
+  console.log("isFirst", isFirst)
+  console.log("currentpage", currentPage)
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
@@ -41,18 +43,18 @@ const Layout = ({data, pageContext}) => {
           <IndexPrevNext to={prevPage} rel="prev">← Previous Page</IndexPrevNext>
         }
         {
-          Array.from({ length: numPages }, (_, i) => (
-            <li key={`pagination-number${i + 1}`}>
+          Array.from({ length: numPages }, (_, index) => (
+            <li key={`pagination-number${index + 1}`}>
               <Link 
-                to={`/${i === 0 ? '' : i + 1}`}
+                to={`/${index === 0 ? '' : index + 1}`}
                 style={{
                   padding: "1rem",
                   textDecoration: 'none',
-                  color: i + 1 === currentPage ? '#ffffff' : '#0076ca', 
-                  background: i + 1 === currentPage ? '#0076ca' : '',
+                  color: index + 1 === currentPage ? '#ffffff' : '#0076ca', 
+                  background: index + 1 === currentPage ? '#0076ca' : '',
                   fontWeight: "bold"
                 }}>
-                {i + 1}
+                {index + 1}
               </Link>
             </li>
           ))
