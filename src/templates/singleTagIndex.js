@@ -5,10 +5,7 @@ import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameSty
 
 const SingleTagTemplate = ({data}) => {
 
-  console.log(data.contentfulTag)
   const { slug, posts } = data.contentfulTag
-
-  console.log(slug)
 
   const TAGNAMEUC = slug.toUpperCase();
   return (

@@ -6,7 +6,7 @@ import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, I
 const Layout = ({data, pageContext}) => {
   const { edges } = data.allContentfulBlogPost
   const { currentPage, numPages } = pageContext
-  const isFirst = currentPage === 1
+  const isFirst = currentPage === 1 || undefined
   console.log("isFirst", isFirst)
   console.log("currentpage", currentPage)
   const isLast = currentPage === numPages

@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag} from '../styled/templatesStyled';
 
 const Template = ({data, pageContext}) => {
-  console.log(pageContext)
   const prev = pageContext.prev
   const next = pageContext.next
   const {title, tags} = data.contentfulBlogPost
