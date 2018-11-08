@@ -1,4 +1,5 @@
 const path = require(`path`)
+const _ = require('lodash')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -20,21 +21,20 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const posts = result.data.allContentfulBlogPost.edges
-      const postsPerPage = 4;
       const numPages = Math.ceil(
-        posts.length / postsPerPage
+        posts.length / 4
       )
 
       // Create additional pagination on home page if needed
-      Array.from({ length: numPages }).forEach((_, i) => {
+      Array.from({ length: numPages }).forEach((_, index) => {
         createPage({
-          path: i === 0 ? `/` : `/${i + 1}`,
+          path: index === 0 ? `/` : `/${index + 1}`,
           component: path.resolve(`./src/pages/index.js`),
           context: {
-            limit: parseInt(postsPerPage),
-            skip: parseInt(i * postsPerPage),
+            limit: 4,
+            skip: (index * 4),
             numPages,
-            currentPage: i + 1,
+            currentPage: (index + 1),
           },
         })
       })
