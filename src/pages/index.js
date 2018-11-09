@@ -5,8 +5,11 @@ import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, I
 
 const Layout = ({data, pageContext}) => {
   const { edges } = data.allContentfulBlogPost
-  const { currentPage, numPages } = pageContext
-  const isFirst = currentPage === 1 || undefined
+  let { currentPage, numPages } = pageContext
+  const isFirst = currentPage === undefined
+  if (isFirst === true ) {
+    currentPage = 1
+  }
   console.log("isFirst", isFirst)
   console.log("currentpage", currentPage)
   const isLast = currentPage === numPages
@@ -45,6 +48,7 @@ const Layout = ({data, pageContext}) => {
         {
           Array.from({ length: numPages }, (_, index) => (
             <li key={`pagination-number${index + 1}`}>
+            
               <Link 
                 to={`/${index === 0 ? '' : index + 1}`}
                 style={{

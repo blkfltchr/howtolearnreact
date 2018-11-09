@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag} from '../styled/templatesStyled'
 
 const SingleTagTemplate = ({data}) => {
-
   const { slug, posts } = data.contentfulTag
 
   const TAGNAMEUC = slug.toUpperCase();
