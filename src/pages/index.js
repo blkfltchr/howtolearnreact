@@ -10,8 +10,6 @@ const Layout = ({data, pageContext}) => {
   if (isFirst === true ) {
     currentPage = 1
   }
-  console.log("isFirst", isFirst)
-  console.log("currentpage", currentPage)
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
@@ -20,9 +18,9 @@ const Layout = ({data, pageContext}) => {
     <div>
       <Header />
       <IndexWrapper>
-        {edges.map((edge) => {
+        {edges.map((edge, index) => {
           return (
-            <div style={{margin: '1rem'}}>
+            <div key={index} style={{margin: '1rem'}}>
               <StyledLink to={edge.node.slug}>
                 {edge.node.title}
               </StyledLink>

@@ -18,9 +18,9 @@ const TitleAndDescription = ({data}) => {
     </HeaderWrapper>
     <BrowseWrapper>
       <BrowseTags>Browse by tag:</BrowseTags>
-      {data.allContentfulTag.edges.map((tag) => {
+      {data.allContentfulTag.edges.map((tag, index) => {
         return (
-          <StyledBrowseTag>
+          <StyledBrowseTag key={index}>
             <Link to={`/tags/${tag.node.slug}`}>{tag.node.slug}</Link>
           </StyledBrowseTag>
         )
