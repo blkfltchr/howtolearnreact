@@ -41,6 +41,7 @@ export const BrowseTags = styled.div`
   font-weight: bold; 
   text-align: center;
   margin-bottom: 1rem;
+  font-family: avenir;
   
   @media (max-width: 450px) {
     display: none

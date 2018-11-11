@@ -2,6 +2,7 @@ import React from "react"
 import { StaticQuery, graphql, Link } from 'gatsby'
 import {HeaderWrapper, HeaderP, BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 import logo from '../images/logo.png'
+import Search from './search/Search'
 
 const TitleAndDescription = ({data}) => {
   const description = data.site.siteMetadata.description
@@ -27,6 +28,7 @@ const TitleAndDescription = ({data}) => {
         )
       })}
       </BrowseWrapper>
+      <Search />
     </div>
   )
 }
