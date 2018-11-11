@@ -34,6 +34,7 @@ const Template = ({data, pageContext}) => {
             </PrevNextButton>)
           }
         </div>
+        <PrevNextButton to={"/"}>Go back home</PrevNextButton>
         <div>
           {next &&
             (<PrevNextButton to={next.slug}>

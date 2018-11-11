@@ -1,7 +1,6 @@
 import React from 'react'
 import { connectSearchBox } from 'react-instantsearch-dom'
-
-export default connectSearchBox(
+ export default connectSearchBox(
   ({ currentRefinement, refine, onFocus, className }) => (
     <div className={className}>
       <input
@@ -14,4 +13,4 @@ export default connectSearchBox(
       />
     </div>
   )
-)
+) 

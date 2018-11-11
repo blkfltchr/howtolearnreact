@@ -1,8 +1,7 @@
 import React from 'react'
 import { Highlight, Snippet } from 'react-instantsearch-dom'
 import { Link } from 'gatsby'
-
- const PostHit = clickHandler => ({ hit }) => (
+  const PostHit = clickHandler => ({ hit }) => (
   <div>
     <Link to={`/` + hit.slug} onClick={clickHandler}>
       <h3>
@@ -19,4 +18,4 @@ import { Link } from 'gatsby'
     <Snippet attribute="excerpt" hit={hit} tagName="mark" />
   </div>
 )
- export default PostHit
+ export default PostHit 

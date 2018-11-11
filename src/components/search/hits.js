@@ -1,1 +1,1 @@
-export {default} from './PostHit'
+export {default} from './PostHit' 

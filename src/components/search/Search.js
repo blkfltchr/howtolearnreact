@@ -5,31 +5,28 @@ import {
   // Index,
   Hits,
   Stats,
-  connectStateResults,
+  // connectStateResults,
 } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import PostHit from './PostHit'
 import SearchBox from './SearchBox'
-
-const Root = styled.div`
+ const Root = styled.div`
   position: relative;
   display: grid;
   grid-gap: 1em;
 `
-
-const events = ['mousedown', 'touchstart']
-const Results = connectStateResults(
-  ({ searchState: state, searchResults: res, children }) =>
-    res && res.nbHits ? children : `No results for ${state.query}`
-)
-
-export default class Search extends Component {
+ const events = ['mousedown', 'touchstart']
+// const Results = connectStateResults(
+//   ({ searchState: state, searchResults: res, children }) =>
+//     res && res.nbHits ? children : `No results for ${state.query}`
+// )
+ export default class Search extends Component {
+     
   state = { 
       query: ``, 
       showHits: false 
     }
-
-   updateState = state => this.setState(state)
+    updateState = state => this.setState(state)
    
    enableHits = () => { this.setState({ showHits: true }) }
    
@@ -53,9 +50,9 @@ export default class Search extends Component {
   }
    render() {
     const { query, showHits } = this.state
-    console.log(this.state)
-
-    return (
+    console.log("Hits", Hits)
+     return (
+         
       <InstantSearch
         appId="X04G7JBMWL"
         apiKey="d1b2d3210de2d87785ced9abd7ce66a64a4339d3c28fcee533956c74bb46ab88"
@@ -66,19 +63,8 @@ export default class Search extends Component {
       >
         <SearchBox onFocus={this.enableHits} />
         <div show={query.length > 0 && showHits}>
-          <Stats
-            translations={{
-              stats: n => `${n} Result${n !== 1 ? `s` : ``}`,
-            }}
-          />
-          {/* {indices.map(({ name, title, hitComp }) => (
-            <Index key={name} indexName={"Posts"}>
-          {title && <h2>{title}</h2>} */}
-              <Results>
-                <Hits hitComponent={PostHit(this.disableHits)} />
-              </Results>
-            {/* </Index>
-          ))} */}
+          <Stats />
+          <Hits hitComponent={PostHit(this.disableHits)} />
           <div>
             Powered by{' '}
             <a href="https://www.algolia.com">
@@ -89,4 +75,4 @@ export default class Search extends Component {
       </InstantSearch>
     )
   }
-}
+} 

@@ -40,7 +40,7 @@ module.exports = {
           appId: process.env.algoliaAppId,
           apiKey: process.env.algoliaApiKey,
           queries, 
-          chunkSize: 10000,
+          chunkSize: 10000
         }
       }
     ]
