@@ -1,3 +1,7 @@
+const queries = require('./src/utils/algolia')
+ 
+require('dotenv').config()
+
 module.exports = {
     siteMetadata: {
       title: 'How To Learn React',
@@ -28,6 +32,15 @@ module.exports = {
         options: {
           name: `images`,
           path: `${__dirname}/src/images`,
+        }
+      },
+      {
+        resolve: `gatsby-plugin-algolia`,
+        options: {
+          appId: process.env.algoliaAppId,
+          apiKey: process.env.algoliaApiKey,
+          queries, 
+          chunkSize: 10000,
         }
       }
     ]
