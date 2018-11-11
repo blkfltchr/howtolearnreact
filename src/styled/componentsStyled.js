@@ -18,7 +18,9 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderP = styled.p`
   margin-top: 0;
-  opacity: 0.5
+  opacity: 0.5;
+  text-align: center;
+  max-width: 90vw;
 `
 
 /* Browse by tags styling */
@@ -27,13 +29,22 @@ export const BrowseWrapper = styled.div`
   display: flex;
   justify-content: center;
   font-family: avenir;
+
+  @media (max-width: 450px) {
+    display: none
+  }
 `
 
 export const BrowseTags = styled.div`
   font-size: 18px; 
   margin-top: 3px; 
   font-weight: bold; 
-  margin-right: 13px
+  text-align: center;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 450px) {
+    display: none
+  }
 `
 
 export const StyledBrowseTag = styled.span`
@@ -56,5 +67,9 @@ export const StyledBrowseTag = styled.span`
     a {
       color: #62DAFC;
     }
+  }
+
+  @media (max-width: 450px) {
+    display: none
   }
 `

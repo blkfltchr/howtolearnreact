@@ -16,8 +16,9 @@ const TitleAndDescription = ({data}) => {
         {description}
       </HeaderP>
     </HeaderWrapper>
+    <BrowseTags>Browse by tag:</BrowseTags>
     <BrowseWrapper>
-      <BrowseTags>Browse by tag:</BrowseTags>
+      
       {data.allContentfulTag.edges.map((tag, index) => {
         return (
           <StyledBrowseTag key={index}>

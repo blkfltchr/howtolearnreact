@@ -14,8 +14,8 @@ const SingleTagTemplate = ({data}) => {
           <h1>POSTS ABOUT {TAGNAMEUC}</h1>
           {posts.map((post, index) => {
             return (
-             <div style={{margin: '0 0 1.45rem 0'}}>
-              <div key={index}>
+             <div key={index} style={{margin: '0 0 1.45rem 0'}}>
+              <div>
                 <TagNameStyledLink to={post.slug}>
                   {post.title}
                 </TagNameStyledLink>
