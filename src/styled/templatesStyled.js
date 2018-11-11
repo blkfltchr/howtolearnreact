@@ -128,3 +128,30 @@ export const TagNameStyledTag = styled.span`
     }
   }
 `
+
+/* Code block styling */
+
+export const StyledMD = styled.div`
+
+code {
+  color: #a700ff;
+  padding: 2px;
+  font:15px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace
+}
+
+pre code {
+  background: #f6f9fc;
+  border: 1px solid #ddd;
+  border-left: 3px solid #62DAFC;
+  color: #666;
+  page-break-inside: avoid;
+  font:15px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}
+`

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag} from '../styled/templatesStyled';
+import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag, StyledMD} from '../styled/templatesStyled';
 
 const Template = ({data, pageContext}) => {
   const prev = pageContext.prev
@@ -21,9 +21,10 @@ const Template = ({data, pageContext}) => {
                   )
                 })
               }
-      <div 
+      <StyledMD 
         dangerouslySetInnerHTML={{
           __html: data.contentfulBlogPost.body.childMarkdownRemark.html
+
         }}    
       />
       <PrevNext>
