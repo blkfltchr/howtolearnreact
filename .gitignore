@@ -64,3 +64,5 @@ yarn-error.log
 static/
 
 LICENSE
+
+src/components/search/
