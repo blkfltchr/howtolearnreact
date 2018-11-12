@@ -34,14 +34,14 @@ module.exports = {
           path: `${__dirname}/src/images`,
         }
       },
-      {
-        resolve: `gatsby-plugin-algolia`,
-        options: {
-          appId: process.env.algoliaAppId,
-          apiKey: process.env.algoliaApiKey,
-          queries, 
-          chunkSize: 10000
-        }
-      }
+      // {
+      //   resolve: `gatsby-plugin-algolia`,
+      //   options: {
+      //     appId: process.env.algoliaAppId,
+      //     apiKey: process.env.algoliaApiKey,
+      //     queries, 
+      //     chunkSize: 10000
+      //   }
+      // }
     ]
   }

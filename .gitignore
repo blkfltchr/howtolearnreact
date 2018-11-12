@@ -66,3 +66,5 @@ static/
 LICENSE
 
 src/components/search/
+
+src/utils/algolia.js
