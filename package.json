@@ -9,6 +9,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "algoliasearch": "^3.30.0",
     "babel-plugin-styled-components": "^1.8.0",
     "dotenv": "^6.1.0",
     "gatsby": "^2.0.37",

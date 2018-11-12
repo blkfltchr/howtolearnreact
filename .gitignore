@@ -65,6 +65,9 @@ static/
 
 LICENSE
 
-src/components/search/
+src/components/search/hits.js
+src/components/search/PostHit.js
+src/components/search/Search.js
+src/components/search/SearchBox.js
 
-src/utils/algolia.js
+src/utils
