@@ -27,7 +27,7 @@ const postQuery =`
 
 const queries = [
     {
-        postQuery,
+        query: postQuery,
         transformer: ({ data }) =>
             data.posts.edges.map(({ node }) => ({ node }))
     },
