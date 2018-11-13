@@ -4,6 +4,7 @@ import {
 } from 'react-instantsearch-dom';
 import {Link} from 'gatsby';
 
+
 const Results = ({hit}) => {
     console.log(hit)
     return (
