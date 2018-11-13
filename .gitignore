@@ -71,3 +71,6 @@ src/components/search/Search.js
 src/components/search/SearchBox.js
 
 src/utils
+
+src/components/search/Results.js
+src/components/search/SearchHits.js
