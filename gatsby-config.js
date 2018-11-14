@@ -10,9 +10,10 @@ const postQuery =`
           title
           date
           tags
+          excerpt
           body {
+            excerpt
             body: childMarkdownRemark {
-              excerpt
               headings {
                 value
                 depth
@@ -69,7 +70,7 @@ module.exports = {
         resolve: "gatsby-plugin-algolia",
         options: {
           appId: "X04G7JBMWL",
-          apiKey: "d996ecc7fc45c239e89d80cd291aba9b",
+          apiKey: "68c9d4898f0eec12443ec67ddd0a1cda",
           indexName: "POSTS",
           queries, 
           chunkSize: 10000

@@ -2,25 +2,19 @@ import React, { Component } from 'react'
 import {
     InstantSearch, Hits, SearchBox, Highlight, PoweredBy
 } from 'react-instantsearch-dom';
-import algoliasearch from 'algoliasearch/lite';
 import {Link} from 'gatsby';
-import {StyledLink, StyledTag} from '../../styled/pagesStyled';
-
-const searchClient = algoliasearch(	
-    'X04G7JBMWL',	
-    'd996ecc7fc45c239e89d80cd291aba9b'	
-  )
+import {StyledLink, StyledTag} from '../../styled/pagesStyled'; 
 
 const Results = ({hit}) => {
-    console.log(hit)
+    console.log("Hit", hit)
     return (
         <div style={{fontFamily:"avenir", textAlign:"center"}}>
-            <StyledLink to={hit.slug}>
-                <Highlight attribute="title" hit={hit} />
+            <StyledLink to={hit.node.slug}>
+                <Highlight attribute="node.title" hit={hit} />
             </StyledLink>
-            <div>{hit.excerpt}</div>
+            <div><Highlight attribute="node.body.body.excerpt" hit={hit} /></div>
             <div style={{marginTop:"1rem"}}>
-                {hit.tags.map((tag, index) => {
+                {hit.node.tags.map((tag, index) => {
                   return (          
                     <StyledTag key={index}>
                       <Link to={`/tags/${tag}`}>{tag}</Link>
@@ -47,7 +41,8 @@ const SearchHits = () => {
         return (
             <div>
                 <InstantSearch indexName="POSTS" 
-                    searchClient={searchClient}>
+                    appId= "X04G7JBMWL"
+                    apiKey= "68c9d4898f0eec12443ec67ddd0a1cda">
                     <div  style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:"1rem"}}>
                     <SearchBox />
                     <PoweredBy />
