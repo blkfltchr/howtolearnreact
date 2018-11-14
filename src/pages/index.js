@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
 import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, IndexPrevNext} from '../styled/pagesStyled';
+import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
 const Layout = ({data, pageContext}) => {
   const { edges } = data.allContentfulBlogPost
@@ -17,6 +18,17 @@ const Layout = ({data, pageContext}) => {
   return (   
     <div>
       <Header />
+      <BrowseTags>Browse by tag:</BrowseTags>
+    <BrowseWrapper>
+      
+      {data.allContentfulTag.edges.map((tag, index) => {
+        return (
+          <StyledBrowseTag key={index}>
+            <Link to={`/tags/${tag.node.slug}`}>{tag.node.slug}</Link>
+          </StyledBrowseTag>
+        )
+      })}
+      </BrowseWrapper>
       <IndexWrapper>
         {edges.map((edge, index) => {
           return (
@@ -89,6 +101,17 @@ export const query = graphql`
           date
           tags
           excerpt
+        }
+      }
+    }
+    allContentfulTag {
+      edges {
+        node {
+          slug
+          posts {
+            id
+            slug
+          }
         }
       }
     }
