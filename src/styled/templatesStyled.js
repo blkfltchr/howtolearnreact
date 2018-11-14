@@ -30,17 +30,20 @@ export const PrevNext = styled.div`
 `
 
 export const PrevNextButton = styled(Link)`
-  background-color: #a700ff;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  padding: 5px;
 
-  :hover {
-    background-color: #ffffff;
-    border: solid 2px #a700ff;
-    color: #a700ff;
-    }
+  @media (min-width: 450px) {
+    background-color: #a700ff;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+
+    :hover {
+      background-color: #ffffff;
+      border: solid 2px #a700ff;
+      color: #a700ff;
+      }
+  }
 `
 
 export const StyledTag = styled.span`
