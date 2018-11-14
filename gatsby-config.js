@@ -10,10 +10,9 @@ const postQuery =`
           title
           date
           tags
-          excerpt
           body {
-            excerpt
             body: childMarkdownRemark {
+              excerpt
               headings {
                 value
                 depth
