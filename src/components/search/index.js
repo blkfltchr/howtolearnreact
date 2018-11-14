@@ -3,14 +3,28 @@ import {
     InstantSearch, Hits, SearchBox, Highlight
 } from 'react-instantsearch-dom';
 import {Link} from 'gatsby';
+import {StyledLink, StyledTag} from '../../styled/pagesStyled';
 
 
 const Results = ({hit}) => {
     console.log(hit)
     return (
-        <Link to={hit.slug}>
-            <Highlight attribute="title" hit={hit} />
-        </Link>
+        <div style={{fontFamily:"avenir", textAlign:"center"}}>
+            <StyledLink to={hit.slug}>
+                <Highlight attribute="title" hit={hit} />
+            </StyledLink>
+            <div>{hit.excerpt}</div>
+            <div style={{marginTop:"1rem"}}>
+                {hit.tags.map((tag, index) => {
+                  return (          
+                    <StyledTag key={index}>
+                      <Link to={`/tags/${tag}`}>{tag}</Link>
+                    </StyledTag>
+                    )
+                  })
+                }
+              </div>  
+        </div>
     )
 }
 
