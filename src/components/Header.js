@@ -9,6 +9,7 @@ const TitleAndDescription = ({data}) => {
   return (
     <div>
     <HeaderWrapper>
+      <Link to="/search"><b style={{position: "absolute", top: "8px", right: "12px",fontSize: "18px", color: "white"}}>Search <span role="img" aria-label="Search">&#128269;</span></b></Link>
       <Link to="/">
           <img src={logo} alt="How to learn react logo" />
       </Link>
