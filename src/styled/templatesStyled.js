@@ -132,6 +132,14 @@ export const TagNameStyledTag = styled.span`
   }
 `
 
+export const SingleTagWrapper = styled.div`
+  margin-bottom: 1.45rem
+`
+
+export const AvenirWrapper = styled.div`
+  font-family: avenir
+`
+
 /* Code block styling */
 
 export const StyledMD = styled.div`

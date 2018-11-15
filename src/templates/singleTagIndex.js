@@ -1,15 +1,14 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
-import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag} from '../styled/templatesStyled'
+import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag, SingleTagWrapper, AvenirWrapper} from '../styled/templatesStyled'
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
 const SingleTagTemplate = ({data}) => {
   const { slug, posts } = data.contentfulTag
-
   const TAGNAMEUC = slug.toUpperCase();
   return (
-    <div style={{fontFamily: 'avenir'}}>
+    <AvenirWrapper>
      <Header />
      <BrowseTags>Browse by tag:</BrowseTags>
     <BrowseWrapper>
@@ -26,7 +25,7 @@ const SingleTagTemplate = ({data}) => {
           <h1>POSTS ABOUT {TAGNAMEUC}</h1>
           {posts.map((post, index) => {
             return (
-             <div key={index} style={{margin: '0 0 1.45rem 0'}}>
+             <SingleTagWrapper key={index}>
               <div>
                 <TagNameStyledLink to={post.slug}>
                   {post.title}
@@ -43,11 +42,11 @@ const SingleTagTemplate = ({data}) => {
                 }
               </div>
              </div>
-            </div>
+            </SingleTagWrapper>
             )
           })}
       </TagNameIndexWrapper>
-    </div>
+    </AvenirWrapper>
   )
 }
 

@@ -4,15 +4,16 @@ import {
 } from 'react-instantsearch-dom';
 import {Link} from 'gatsby';
 import {StyledLink, StyledTag} from '../../styled/pagesStyled'; 
+import {ResultsWrapper, SearchTags} from '../../styled/componentsStyled'
 
 const Results = ({hit}) => {
     return (
-        <div style={{fontFamily:"avenir", textAlign:"center"}}>
+        <ResultsWrapper>
             <StyledLink to={hit.node.slug}>
                 <Highlight attribute="node.title" hit={hit} />
             </StyledLink>
             <div><Highlight attribute="node.body.body.excerpt" hit={hit} /></div>
-            <div style={{marginTop:"1rem"}}>
+            <SearchTags>
                 {hit.node.tags.map((tag, index) => {
                   return (          
                     <StyledTag key={index}>
@@ -21,8 +22,8 @@ const Results = ({hit}) => {
                     )
                   })
                 }
-              </div>  
-        </div>
+              </SearchTags>  
+        </ResultsWrapper>
     )
 }
 

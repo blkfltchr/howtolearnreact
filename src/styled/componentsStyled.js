@@ -23,6 +23,22 @@ export const HeaderP = styled.p`
   max-width: 90vw;
 `
 
+export const HeaderHome = styled.b`
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 18px;
+  color: white
+`
+
+export const HeaderSearch = styled.b`
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  fontSize: 18px;
+  color: white
+`
+
 /* Browse by tags styling */
 
 export const BrowseWrapper = styled.div`
@@ -73,4 +89,22 @@ export const StyledBrowseTag = styled.span`
   @media (max-width: 450px) {
     display: none
   }
+`
+/* Search styles */
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  flexDirection: column;
+  justifyContent: center;
+  alignItems: center;
+  marginTop: 1rem
+`
+
+export const ResultsWrapper = styled.div`
+  font-family: avenir; 
+  text-align: center
+`
+
+export const SearchTags = styled.div`
+  margin-top: 1rem  
 `
