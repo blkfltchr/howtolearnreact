@@ -8,7 +8,6 @@ const postQuery =`
           objectID: id
           slug
           title
-          date
           tags
           body {
             body: childMarkdownRemark {
