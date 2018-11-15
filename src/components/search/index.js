@@ -1,39 +1,8 @@
 import React, { Component } from 'react'
 import {
-    InstantSearch, Hits, SearchBox, Highlight, PoweredBy
+    InstantSearch, SearchBox, PoweredBy
 } from 'react-instantsearch-dom';
-import {Link} from 'gatsby';
-import {StyledLink, StyledTag} from '../../styled/pagesStyled'; 
-
-const Results = ({hit}) => {
-    console.log("Hit", hit)
-    return (
-        <div style={{fontFamily:"avenir", textAlign:"center"}}>
-            <StyledLink to={hit.node.slug}>
-                <Highlight attribute="node.title" hit={hit} />
-            </StyledLink>
-            <div><Highlight attribute="node.body.body.excerpt" hit={hit} /></div>
-            <div style={{marginTop:"1rem"}}>
-                {hit.node.tags.map((tag, index) => {
-                  return (          
-                    <StyledTag key={index}>
-                      <Link to={`/tags/${tag}`}>{tag}</Link>
-                    </StyledTag>
-                    )
-                  })
-                }
-              </div>  
-        </div>
-    )
-}
-
-const SearchHits = () => {
-    return (
-        <div>
-            <Hits hitComponent={Results}/>
-        </div>
-    )
-}
+import SearchHits from './SearchHits'
  
  export default class Search extends Component {
    
