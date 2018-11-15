@@ -94,10 +94,9 @@ export const StyledBrowseTag = styled.span`
 
 export const SearchWrapper = styled.div`
   display: flex;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  marginTop: 1rem
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem
 `
 
 export const ResultsWrapper = styled.div`

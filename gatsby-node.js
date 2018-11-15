@@ -62,7 +62,6 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               slug
               posts {
-                id
                 slug
                 title
               }
