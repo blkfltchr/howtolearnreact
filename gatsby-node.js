@@ -8,13 +8,13 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(`
       {
         allContentfulBlogPost(
-          sort: { fields: [date], order: ASC }
+          sort: { fields: [createdAt], order: ASC }
           limit: 10000
         ) {
           edges {
             node {
               slug
-              date
+              createdAt
             }
           }
         }

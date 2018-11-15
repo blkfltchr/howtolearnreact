@@ -86,7 +86,7 @@ const Layout = ({data, pageContext}) => {
 export const query = graphql`
   query HomepageQuery($skip: Int) {
     allContentfulBlogPost(
-      sort: {fields: [date], order: ASC},
+      sort: {fields: [createdAt], order: ASC},
       limit: 4,
       skip: $skip
     ) {
@@ -98,7 +98,7 @@ export const query = graphql`
             id
             body
           }
-          date
+          createdAt
           tags
           excerpt
         }

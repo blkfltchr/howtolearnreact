@@ -9,7 +9,7 @@ Features include:
 - [x] Mobile responsive
 - [x] Deployed to Netlify
 - [x] Pagination
-- [ ] Algolia search
+- [x] Algolia search
 - [ ] Testing
 - [ ] SEO
 
