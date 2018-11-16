@@ -22,6 +22,14 @@ export const BlogPostWrapper = styled.div`
   width: 60vw;
   margin: 0 auto;
   font-family: avenir;
+  
+  @media (max-width: 768px) {
+    width: 75vw
+  }
+
+  @media (max-width: 450px) {
+    width: 90vw
+  }
 `
 
 export const PrevNext = styled.div`
@@ -156,7 +164,7 @@ pre code {
   border-left: 3px solid #62DAFC;
   color: #666;
   page-break-inside: avoid;
-  font:15px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace
+  font:15px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
   line-height: 1.6;
   margin-bottom: 1.6em;
   max-width: 100%;
