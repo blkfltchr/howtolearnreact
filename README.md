@@ -10,10 +10,10 @@ Features include:
 - [x] Deployed to Netlify
 - [x] Pagination
 - [x] Algolia search
-- [x] Hosted at [www.howtolearnreact.com](www.howtolearnreact.com)
+- [x] Hosted at [www.howtolearnreact.com](http://howtolearnreact.com)
 
 Features to come:
 - [ ] Testing
 - [ ] SEO
 
-You can [view the live site here](www.howtolearnreact.com/).
+You can [view the live demo here](http://howtolearnreact.com/).
