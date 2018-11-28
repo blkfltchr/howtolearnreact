@@ -73,6 +73,12 @@ module.exports = {
           queries, 
           chunkSize: 10000
         }
+      },
+      {
+        resolve: `gatsby-plugin-favicon`,
+        options: {
+          logo: "./src/favicon.png",
+        }
       }
     ]
   }
