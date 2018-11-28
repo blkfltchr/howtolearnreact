@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag, SingleTagWrapper, AvenirWrapper} from '../styled/templatesStyled'
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
@@ -46,6 +47,7 @@ const SingleTagTemplate = ({data}) => {
             )
           })}
       </TagNameIndexWrapper>
+      <Footer />
     </AvenirWrapper>
   )
 }

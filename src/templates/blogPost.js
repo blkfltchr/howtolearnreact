@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag, StyledMD} from '../styled/templatesStyled';
 
 const Template = ({data, pageContext}) => {
@@ -45,6 +46,7 @@ const Template = ({data, pageContext}) => {
         </div>
       </PrevNext>
       </BlogPostWrapper>
+      <Footer />
     </div>
   )
 }

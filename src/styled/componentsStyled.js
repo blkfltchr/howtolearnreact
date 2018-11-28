@@ -107,3 +107,29 @@ export const ResultsWrapper = styled.div`
 export const SearchTags = styled.div`
   margin-top: 1rem  
 `
+
+/* Footer styles */
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  font-family: avenir;
+  color: white;
+  background-image: linear-gradient(#62DAFC, #0076ca);
+  margin-top: 1rem;
+`
+
+export const FooterParagraph = styled.div`
+  width: 70vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  a {
+    color: white;
+    font-weight: bold;
+  }
+`

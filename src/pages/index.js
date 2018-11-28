@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, IndexPrevNext} from '../styled/pagesStyled';
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
@@ -80,6 +81,7 @@ const Layout = ({data, pageContext}) => {
         }
         </PaginationWrapper>
       </IndexWrapper>
+      <Footer />
     </div>
   )
 }
