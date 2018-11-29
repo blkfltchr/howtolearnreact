@@ -71,22 +71,22 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const tags = result.data.allContentfulTag.edges
-      const postsPerPage = 1
+      const numPages = Math.ceil(
+        tags.length / 3
+        )
   
       // Create tag pages with pagination if needed
       tags.map(({ node }) => {
-        const numPages = Math.ceil(node.posts.length / postsPerPage)
+        
         Array.from({ length: numPages }).forEach((_, index) => {
           createPage({
-            path:
-              index === 0 ? `/tags/${node.slug}/` : `/tags/${node.slug}/${index + 1}/`,
+            path: index === 0 ? `/tags/${node.slug}` : `/tags/${node.slug}/${index + 1}`,
             component: path.resolve(`./src/templates/singleTagIndex.js`),
             context: {
-              pathSlug: node.slug,
-              limit: postsPerPage,
-              skip: index * postsPerPage,
+              limit: 3,
+              skip: (index * 3),
               numPages,
-              currentPage: index + 1,
+              currentPage: (index + 1),
             },
           })
         })
