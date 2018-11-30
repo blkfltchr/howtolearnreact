@@ -4,10 +4,19 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag, SingleTagWrapper, AvenirWrapper} from '../styled/templatesStyled'
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
+import {PaginationWrapper, IndexPrevNext} from '../styled/pagesStyled';
 
-const SingleTagTemplate = ({data}) => {
+const SingleTagTemplate = ({data, pageContext}) => {
+  
   const { slug, posts } = data.contentfulTag
   const TAGNAMEUC = slug.toUpperCase();
+  console.log(data.contentfulTag.slug)
+  let { currentPage, numPages } = pageContext
+  const isLast = currentPage === numPages
+  const isFirst = currentPage === 1
+  const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
+  const nextPage = (currentPage + 1).toString()
+
   return (
     <AvenirWrapper>
      <Header />
@@ -47,6 +56,36 @@ const SingleTagTemplate = ({data}) => {
             )
           })}
       </TagNameIndexWrapper>
+      <div style={{display: "flex", justifyContent: "center"}}>
+      <PaginationWrapper>
+        {
+          !isFirst &&
+          <IndexPrevNext to={prevPage} rel="prev">← Previous Page</IndexPrevNext>
+        }
+        {
+          Array.from({ length: numPages }, (_, index) => (
+            <li key={`pagination-number${index + 1}`}>
+            
+              <Link 
+                to={`/tags/${slug}/${index === 0 ? '' : index + 1}`}
+                style={{
+                  padding: "1rem",
+                  textDecoration: 'none',
+                  color: index + 1 === currentPage ? '#ffffff' : '#0076ca', 
+                  background: index + 1 === currentPage ? '#0076ca' : '',
+                  fontWeight: "bold"
+                }}>
+                {index + 1}
+              </Link>
+            </li>
+          ))
+        }
+        {
+          !isLast &&
+          <IndexPrevNext to={nextPage} rel="next">Next Page →</IndexPrevNext>
+        }
+        </PaginationWrapper>
+        </div>
       <Footer />
     </AvenirWrapper>
   )
