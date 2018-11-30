@@ -55,8 +55,8 @@ const SingleTagTemplate = ({data}) => {
 export default SingleTagTemplate
 
 export const pageQuery = graphql`
-  query($pathSlug: String!) {
-    contentfulTag(slug: { eq: $pathSlug }) {
+  query {
+    contentfulTag {
           slug
           posts {
             id
