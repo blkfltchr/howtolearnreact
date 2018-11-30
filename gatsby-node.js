@@ -83,6 +83,7 @@ exports.createPages = ({ graphql, actions }) => {
             path: index === 0 ? `/tags/${node.slug}` : `/tags/${node.slug}/${index + 1}`,
             component: path.resolve(`./src/templates/singleTagIndex.js`),
             context: {
+              pathSlug: node.slug,
               limit: 3,
               skip: (index * 3),
               numPages,

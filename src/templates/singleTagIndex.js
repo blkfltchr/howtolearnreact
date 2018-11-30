@@ -10,7 +10,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
   
   const { slug, posts } = data.contentfulTag
   const TAGNAMEUC = slug.toUpperCase();
-  console.log(data.contentfulTag.slug)
+  console.log(pageContext)
   let { currentPage, numPages } = pageContext
   const isLast = currentPage === numPages
   const isFirst = currentPage === 1
@@ -60,14 +60,14 @@ const SingleTagTemplate = ({data, pageContext}) => {
       <PaginationWrapper>
         {
           !isFirst &&
-          <IndexPrevNext to={prevPage} rel="prev">← Previous Page</IndexPrevNext>
+          <IndexPrevNext to={`/tags/${data.contentfulTag.slug}/${currentPage === 2 ? '' : currentPage - 1}`} rel="prev">← Previous Page</IndexPrevNext>
         }
         {
           Array.from({ length: numPages }, (_, index) => (
             <li key={`pagination-number${index + 1}`}>
             
               <Link 
-                to={`/tags/${slug}/${index === 0 ? '' : index + 1}`}
+                to={`/tags/${data.contentfulTag.slug}/${index === 0 ? '' : index + 1}`}
                 style={{
                   padding: "1rem",
                   textDecoration: 'none',
@@ -82,7 +82,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
         }
         {
           !isLast &&
-          <IndexPrevNext to={nextPage} rel="next">Next Page →</IndexPrevNext>
+          <IndexPrevNext to={`/tags/${data.contentfulTag.slug}/${currentPage === 0 ? '' : currentPage + 1}`} rel="next">Next Page →</IndexPrevNext>
         }
         </PaginationWrapper>
         </div>
@@ -94,8 +94,8 @@ const SingleTagTemplate = ({data, pageContext}) => {
 export default SingleTagTemplate
 
 export const pageQuery = graphql`
-  query {
-    contentfulTag {
+    query($pathSlug: String!) {
+    contentfulTag(slug: { eq: $pathSlug }) {
           slug
           posts {
             id
