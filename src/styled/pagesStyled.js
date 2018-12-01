@@ -81,11 +81,19 @@ export const PaginationWrapper = styled.ul`
 export const IndexPrevNext = styled(Link)`
   color: #0076ca; 
   text-decoration: none; 
-  font-weight: bold}}
+  font-weight: bold;
+  text-align: center;
 
   @media (max-width: 450px) {
     width: 100%;
     margin: 1rem 0;
   }
 
+`
+
+export const PaginationList = styled.ul`
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 1rem 0
 `

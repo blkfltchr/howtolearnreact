@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, IndexPrevNext} from '../styled/pagesStyled';
+import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, IndexPrevNext, PaginationList} from '../styled/pagesStyled';
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
 const Layout = ({data, pageContext}) => {
@@ -60,7 +60,7 @@ const Layout = ({data, pageContext}) => {
         }
         {
           Array.from({ length: numPages }, (_, index) => (
-            <ul style={{display: "flex", justifyContent: "center", listStyleType: "none", margin: "1rem 0"}}>
+            <PaginationList>
               <li key={`pagination-number${index + 1}`}>          
                 <Link 
                   to={`/${index === 0 ? '' : index + 1}`}
@@ -74,7 +74,7 @@ const Layout = ({data, pageContext}) => {
                   {index + 1}
                 </Link>
               </li>
-            </ul>
+            </PaginationList>
           ))
         }
         {

@@ -118,7 +118,7 @@ export const TagNameStyledLink = styled(Link)`
 `
 
 export const TagNameStyledTag = styled.span`
-  margin-right: 24px;
+  margin: 0 1rem;
   padding: 4px;
   background-color: #a700ff;
   border-radius: 5px;

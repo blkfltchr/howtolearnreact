@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {TagNameIndexWrapper, TagNameStyledExcerpt, TagNameStyledLink, TagNameStyledTag, SingleTagWrapper, AvenirWrapper} from '../styled/templatesStyled'
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
-import {PaginationWrapper, IndexPrevNext} from '../styled/pagesStyled';
+import {PaginationWrapper, IndexPrevNext, PaginationList} from '../styled/pagesStyled';
 
 const SingleTagTemplate = ({data, pageContext}) => {
   
@@ -63,20 +63,21 @@ const SingleTagTemplate = ({data, pageContext}) => {
         }
         {
           Array.from({ length: numPages }, (_, index) => (
-            <li key={`pagination-number${index + 1}`}>
-            
-              <Link 
-                to={`/tags/${tagSlug}/${index === 0 ? '' : index + 1}`}
-                style={{
-                  padding: "1rem",
-                  textDecoration: 'none',
-                  color: index + 1 === currentPage ? '#ffffff' : '#0076ca', 
-                  background: index + 1 === currentPage ? '#0076ca' : '',
-                  fontWeight: "bold"
-                }}>
-                {index + 1}
-              </Link>
-            </li>
+            <PaginationList>
+              <li key={`pagination-number${index + 1}`}>            
+                <Link 
+                  to={`/tags/${tagSlug}/${index === 0 ? '' : index + 1}`}
+                  style={{
+                    padding: "1rem",
+                    textDecoration: 'none',
+                    color: index + 1 === currentPage ? '#ffffff' : '#0076ca', 
+                    background: index + 1 === currentPage ? '#0076ca' : '',
+                    fontWeight: "bold"
+                  }}>
+                  {index + 1}
+                </Link>
+              </li>
+            </PaginationList>
           ))
         }
         {
