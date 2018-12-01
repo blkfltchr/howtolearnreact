@@ -60,20 +60,21 @@ const Layout = ({data, pageContext}) => {
         }
         {
           Array.from({ length: numPages }, (_, index) => (
-            <li key={`pagination-number${index + 1}`}>
-            
-              <Link 
-                to={`/${index === 0 ? '' : index + 1}`}
-                style={{
-                  padding: "1rem",
-                  textDecoration: 'none',
-                  color: index + 1 === currentPage ? '#ffffff' : '#0076ca', 
-                  background: index + 1 === currentPage ? '#0076ca' : '',
-                  fontWeight: "bold"
-                }}>
-                {index + 1}
-              </Link>
-            </li>
+            <ul style={{display: "flex", justifyContent: "center", listStyleType: "none", margin: "1rem 0"}}>
+              <li key={`pagination-number${index + 1}`}>          
+                <Link 
+                  to={`/${index === 0 ? '' : index + 1}`}
+                  style={{
+                    padding: "1rem",
+                    textDecoration: 'none',
+                    color: index + 1 === currentPage ? '#ffffff' : '#0076ca', 
+                    background: index + 1 === currentPage ? '#0076ca' : '',
+                    fontWeight: "bold"
+                  }}>
+                  {index + 1}
+                </Link>
+              </li>
+            </ul>
           ))
         }
         {

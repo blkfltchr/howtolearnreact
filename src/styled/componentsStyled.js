@@ -39,6 +39,12 @@ export const HeaderSearch = styled.b`
   color: white
 `
 
+/* Logo styling */
+
+export const LogoImg = styled.img`
+  margin-top: 1rem
+`
+
 /* Browse by tags styling */
 
 export const BrowseWrapper = styled.div`
