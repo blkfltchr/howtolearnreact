@@ -9,15 +9,11 @@ import {PaginationWrapper, IndexPrevNext} from '../styled/pagesStyled';
 const SingleTagTemplate = ({data, pageContext}) => {
   
   const { slug, posts } = data.contentfulTag
-  const TAGNAMEUC = slug.toUpperCase();
-  console.log(data.contentfulTag.slug, pageContext)
-  console.log("skip", pageContext.skip)
-  console.log("limit", pageContext.limit)
-  const skip = pageContext.skip
-  const limit = pageContext.limit
-  let { currentPage, numPages } = pageContext
+  const TAGNAME = slug.toUpperCase();
+  let { skip, limit, currentPage, numPages } = pageContext
   const isOnly = numPages === 1
   const isLast = currentPage === numPages
+  const tagSlug = data.contentfulTag.slug
   const isFirst = currentPage === 1
 
   return (
@@ -34,7 +30,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
       })}
       </BrowseWrapper>
       <TagNameIndexWrapper>
-          <h1>POSTS ABOUT {TAGNAMEUC}</h1>
+          <h1>POSTS ABOUT {TAGNAME}</h1>
           {posts.slice(skip, limit * currentPage).map((post, index) => {
             return (
              <SingleTagWrapper key={index}>
@@ -63,14 +59,14 @@ const SingleTagTemplate = ({data, pageContext}) => {
       <PaginationWrapper>
         {
           !isFirst &&
-          <IndexPrevNext to={`/tags/${data.contentfulTag.slug}/${currentPage === 2 ? '' : currentPage - 1}`} rel="prev">← Previous Page</IndexPrevNext>
+          <IndexPrevNext to={`/tags/${tagSlug}/${currentPage === 2 ? '' : currentPage - 1}`} rel="prev">← Previous Page</IndexPrevNext>
         }
         {
           Array.from({ length: numPages }, (_, index) => (
             <li key={`pagination-number${index + 1}`}>
             
               <Link 
-                to={`/tags/${data.contentfulTag.slug}/${index === 0 ? '' : index + 1}`}
+                to={`/tags/${tagSlug}/${index === 0 ? '' : index + 1}`}
                 style={{
                   padding: "1rem",
                   textDecoration: 'none',
@@ -85,7 +81,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
         }
         {
           !isLast &&
-          <IndexPrevNext to={`/tags/${data.contentfulTag.slug}/${currentPage === 0 ? '' : currentPage + 1}`} rel="next">Next Page →</IndexPrevNext>
+          <IndexPrevNext to={`/tags/${tagSlug}/${currentPage === 0 ? '' : currentPage + 1}`} rel="next">Next Page →</IndexPrevNext>
         }
         </PaginationWrapper>
         </div>

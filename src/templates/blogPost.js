@@ -50,7 +50,7 @@ const Template = ({data, pageContext}) => {
     </div>
   )
 }
-//($pathSlug: String!) {eq: $pathSlug} {eq: "setting-up-a-react-environment-using-a-single-html-file"}
+
 export const query = graphql`
   query blogPostQuery($pathSlug: String!){
     contentfulBlogPost(slug: {eq: $pathSlug}) {
