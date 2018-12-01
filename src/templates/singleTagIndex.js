@@ -10,19 +10,21 @@ const SingleTagTemplate = ({data, pageContext}) => {
   
   const { slug, posts } = data.contentfulTag
   const TAGNAMEUC = slug.toUpperCase();
-  console.log(pageContext)
+  console.log(data.contentfulTag.slug, pageContext)
+  console.log("skip", pageContext.skip)
+  console.log("limit", pageContext.limit)
+  const skip = pageContext.skip
+  const limit = pageContext.limit
   let { currentPage, numPages } = pageContext
+  const isOnly = numPages === 1
   const isLast = currentPage === numPages
   const isFirst = currentPage === 1
-  const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
-  const nextPage = (currentPage + 1).toString()
 
   return (
     <AvenirWrapper>
      <Header />
      <BrowseTags>Browse by tag:</BrowseTags>
     <BrowseWrapper>
-      
       {data.allContentfulTag.edges.map((tag, index) => {
         return (
           <StyledBrowseTag key={index}>
@@ -33,7 +35,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
       </BrowseWrapper>
       <TagNameIndexWrapper>
           <h1>POSTS ABOUT {TAGNAMEUC}</h1>
-          {posts.map((post, index) => {
+          {posts.slice(skip, limit * currentPage).map((post, index) => {
             return (
              <SingleTagWrapper key={index}>
               <div>
@@ -56,6 +58,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
             )
           })}
       </TagNameIndexWrapper>
+      { !isOnly &&
       <div style={{display: "flex", justifyContent: "center"}}>
       <PaginationWrapper>
         {
@@ -86,6 +89,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
         }
         </PaginationWrapper>
         </div>
+        }
       <Footer />
     </AvenirWrapper>
   )

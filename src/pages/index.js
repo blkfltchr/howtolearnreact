@@ -6,6 +6,7 @@ import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, I
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
 const Layout = ({data, pageContext}) => {
+  
   const { edges } = data.allContentfulBlogPost
   let { currentPage, numPages } = pageContext
   const isFirst = currentPage === undefined

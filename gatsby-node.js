@@ -71,13 +71,12 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const tags = result.data.allContentfulTag.edges
-      const numPages = Math.ceil(
-        tags.length / 3
-        )
   
       // Create tag pages with pagination if needed
       tags.map(({ node }) => {
-        
+        const numPages = Math.ceil(
+          node.posts.length / 3
+          )
         Array.from({ length: numPages }).forEach((_, index) => {
           createPage({
             path: index === 0 ? `/tags/${node.slug}` : `/tags/${node.slug}/${index + 1}`,
