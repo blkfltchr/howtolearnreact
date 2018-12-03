@@ -43,6 +43,7 @@ module.exports = {
       "gatsby-plugin-styled-components",
       "gatsby-transformer-sharp",
       "gatsby-plugin-sharp",
+      "gatsby-plugin-react-helmet",
       {
         resolve: "gatsby-source-contentful",
         options: {

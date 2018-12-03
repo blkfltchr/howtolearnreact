@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, Link } from 'gatsby';
+import {Helmet} from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {IndexWrapper, StyledExcerpt, StyledLink, StyledTag, PaginationWrapper, IndexPrevNext, PaginationList} from '../styled/pagesStyled';
@@ -20,6 +21,11 @@ const Layout = ({data, pageContext}) => {
   return (  
     
     <div>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>How To Learn React</title>
+          <link rel="canonical" href="https://www.howtolearnreact.com" />
+        </Helmet>
       <Header />
       <BrowseTags>Browse by tag:</BrowseTags>
     <BrowseWrapper>
