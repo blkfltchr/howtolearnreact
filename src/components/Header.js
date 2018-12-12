@@ -8,17 +8,16 @@ const TitleAndDescription = ({data}) => {
 
   return (
     <div>
-    <HeaderWrapper>
-      <Link to="/search"><HeaderHome>Search <span role="img" aria-label="Search">&#128269;</span></HeaderHome></Link>
-      <Link to="/"><HeaderSearch><span role="img" aria-label="Home">&#127968;</span> Home</HeaderSearch></Link>
-      <Link to="/">
-          <LogoImg src={logo} alt="How to learn react logo" />
-      </Link>
-      <HeaderP>
-        {description}
-      </HeaderP>
-    </HeaderWrapper>
-    
+      <HeaderWrapper>
+        <Link to="/search"><HeaderHome>Search <span role="img" aria-label="Search">&#128269;</span></HeaderHome></Link>
+        <Link to="/"><HeaderSearch><span role="img" aria-label="Home">&#127968;</span> Home</HeaderSearch></Link>
+        <Link to="/">
+            <LogoImg src={logo} alt="How to learn react logo" />
+        </Link>
+        <HeaderP>
+          {description}
+        </HeaderP>
+      </HeaderWrapper>
     </div>
   )
 }

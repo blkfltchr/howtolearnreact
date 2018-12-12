@@ -72,8 +72,10 @@ export const BrowseTags = styled.div`
 
 export const StyledBrowseTag = styled.span`
   margin-right: 24px;
-  padding: 4px;
+  padding: 3px;
+  font-weight: bold;
   background-color: #62DAFC;
+  border: solid 2px #62DAFC;
   border-radius: 5px;
 
   a {
@@ -85,7 +87,7 @@ export const StyledBrowseTag = styled.span`
   :hover {
     
     background-color: #ffffff;
-    border: solid 2px #62DAFC;
+    
 
     a {
       color: #62DAFC;

@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag, StyledMD} from '../styled/templatesStyled';
+import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
 
 const Template = ({data, pageContext}) => {
   const prev = pageContext.prev
@@ -12,6 +13,16 @@ const Template = ({data, pageContext}) => {
   return (
     <div>
       <Header />
+      <BrowseTags>Browse by tag:</BrowseTags>
+    <BrowseWrapper>
+      {data.allContentfulTag.edges.map((tag, index) => {
+        return (
+          <StyledBrowseTag key={index}>
+            <Link to={`/tags/${tag.node.slug}`}>{tag.node.slug}</Link>
+          </StyledBrowseTag>
+        )
+      })}
+      </BrowseWrapper>
       <BlogPostWrapper>
       <h1>{title}</h1>
       {tags.map((tag, index) => {
@@ -63,6 +74,17 @@ export const query = graphql`
         }
         }
       }
+    allContentfulTag {
+      edges {
+        node {
+          slug
+          posts {
+            id
+            slug
+          }
+        }
+      }
+    }
   }
 `
 
