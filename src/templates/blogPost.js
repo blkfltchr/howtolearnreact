@@ -16,7 +16,7 @@ const Template = ({data, pageContext}) => {
       <Helmet>
           <meta charSet="utf-8" />
           <title>{title}}</title>
-          <link rel="canonical" href={`http://howtolearnreact.com/${slug}`} />
+          <link rel="canonical" href={`https://howtolearnreact.com/${slug}`} />
           <meta name="description" content={excerpt} />
         </Helmet>
       <Header />
