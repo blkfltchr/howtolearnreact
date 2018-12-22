@@ -4,14 +4,21 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {BlogPostWrapper, PrevNext, PrevNextButton, StyledTag, StyledMD} from '../styled/templatesStyled';
 import {BrowseWrapper, BrowseTags, StyledBrowseTag} from '../styled/componentsStyled';
+import { Helmet } from "react-helmet"
 
 const Template = ({data, pageContext}) => {
   const prev = pageContext.prev
   const next = pageContext.next
-  const {title, tags} = data.contentfulBlogPost
+  const {title, tags, excerpt, slug} = data.contentfulBlogPost
 
   return (
     <div>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>{title}}</title>
+          <link rel="canonical" href={`http://howtolearnreact.com/${slug}`} />
+          <meta name="description" content={excerpt} />
+        </Helmet>
       <Header />
       <BrowseTags>Browse by tag:</BrowseTags>
     <BrowseWrapper>
@@ -68,12 +75,13 @@ export const query = graphql`
       title
       slug
       tags
+      excerpt
       body {
         childMarkdownRemark {
           html
         }
-        }
       }
+    }
     allContentfulTag {
       edges {
         node {
