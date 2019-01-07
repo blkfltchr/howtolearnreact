@@ -23,20 +23,22 @@ export const HeaderP = styled.p`
   max-width: 90vw;
 `
 
-export const HeaderHome = styled.b`
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 18px;
-  color: white
+export const HeaderIcons = styled.div`
+padding-top: 0.3rem; 
+height: 2rem; 
+background-color: #62DAFC; 
+width: 100%; 
+display: flex; 
+justify-content: center
 `
 
-export const HeaderSearch = styled.b`
-  position: absolute;
-  top: 8px;
-  left: 12px;
-  fontSize: 18px;
-  color: white
+export const HeaderIcon = styled.a`
+  right: 12px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  margin: 0 0.7rem;
+  font-weight: bold;
 `
 
 /* Logo styling */
